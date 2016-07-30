@@ -1,0 +1,15 @@
+<section class="row">
+	<div class="col-md-4">
+		<div id="tags"  ng-cloak>
+		    <button ng-repeat="tag in tagData" ng-click="changeWord(tag)" class="btn btn-primary btn-lg" role="button">
+			    <i class="fa fa-tag"></i>
+		       {{ tag.name }}
+			</button>
+		</div>
+	</div>
+	<div class="col-md-8 words" >
+		<svg></svg>
+	    <letter ng-repeat="letter in wordOBJ" myletter="letter"/>
+	    <!-- <h1>{{wordOBJ}}</h1> -->
+	</div>
+</section>

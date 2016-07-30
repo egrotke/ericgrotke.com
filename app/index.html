@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>ericgrotke.com</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- Latest compiled and minified CSS Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <!-- <script src="bower_components/modernizr/modernizr.js"></script> -->
+    <!-- endbuild -->
+</head>
+
+<body>
+    <div id="bg"></div>
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <![endif]-->
+    <main  class="container" ng-app="egApp" ng-strict-di>
+        <nav class="header scrolled-up">
+            <ul class="nav nav-pills pull-right">
+                <li class="home active"><a href="#home" id="home-button">Home</a></li>
+                <li class="about"><a href="#about" id="about-button">About</a></li>
+                <li class="projects"><a href="#projects" id="projects-button">Projects</a></li>
+                <li class="contact"><a href="#contact" id="contact-button">Contact</a></li>
+            </ul>
+            <div id="flippers" ng-controller='LettersController' ng-cloak>
+                <div ng-repeat="word in myData.words" class="repeater">
+                    <div ng-repeat="block in word.blocks" class="flip-container block-{{ $index }} " ontouchstart="this.classList.toggle('hover');">
+                        <div class="flipper">
+                            <div class="front">
+                                <h1>{{ block.letter }}</h1>
+                            </div>
+                            <div class="back" ng-click="myData.words.doClick($index, block, $event)" ng-mouseover="myData.words.doHover($index, block, $event)" title="{{ block.title }}">
+                                <a href="{{block.url}}">
+                                    <h1><i class="fa {{ block.icon }}"></i></h1>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </nav>
+        <!-- angular templating -->
+        <!-- this is where content will be injected -->
+        <div ng-view id="template-container"></div>
+    </main>
+    <footer class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12  col-lg-12">
+                <div class="footer">
+                    <p>&copy; egrotke</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. 
+  <script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X');ga('send','pageview');
+  </script>-->
+    <!-- build:js({app,.tmp}) scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <script src="scripts/steamgraph.js"></script>
+    <script src="scripts/piechart.js"></script>
+    <!-- endbuild -->
+</body>
+
+</html>

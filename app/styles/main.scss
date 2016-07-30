@@ -1,0 +1,409 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+//Customize bootstrap variables here:
+@import "vars_eg";
+//Graph stuff
+@import "d3_styles";
+
+@import 'mixins';
+
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+$blockSize: 60px;
+* {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+    display: none !important;
+}
+
+$highlight-hue: rgba(217, 237, 247, .75);
+$bg-hue: Cornsilk;
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+
+/*.h1, h2, .h2, h3, .h3, h4, p, ul {
+margin: 10px;
+}*/
+
+
+/* Space out content a bit */
+
+body {
+    background-color: $bg-hue;
+}
+
+#bg {
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#video-player {
+    position: relative;
+    margin: 100px auto;
+    text-align: center;
+}
+
+.container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 0;
+    top: 0;
+}
+
+main {
+    min-height: 680px;
+}
+
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+
+.header,
+.footer {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+/* Custom page header */
+
+.header {
+    overflow: hidden;
+    /* Make the masthead heading the same height as the navigation */
+    h3 {
+        margin-top: 0;
+        margin-bottom: 0;
+        line-height: 40px;
+        padding-bottom: 19px;
+    }
+}
+
+
+/* Custom page footer */
+
+.footer {
+    width: 100%;
+    color: #e5e5e5;
+    border-top: 1px solid #e5e5e5;
+    text-align: right;
+}
+
+.container-narrow > hr {
+    margin: 30px 0;
+}
+
+/*nav.scrolled-up {
+    position: fixed;
+    width:100%;
+    z-index:10;
+}*/
+
+.nav {
+    z-index: 5;
+    margin-right: 0;
+    width: 100px;
+    right: -5px;
+    position: relative;
+    li {
+        float: right;
+        margin-bottom: 3px;
+        margin-right: 5px;
+    }
+    li:last-child {
+        margin-right: 0;
+    }
+}
+
+
+.nav > li > a {
+    background-color: $brand-primary;
+    color: white;
+}
+
+nav .nav.nav-pills > .active > a {
+    color: white;
+    background-color: $brand-info;
+}
+
+.nav-pills > li > a:hover,
+.nav-pills > li > a:focus {
+    @include soft-shadow();
+    color: $brand-info;
+    background-color: white;
+}
+
+#flippers {
+    @include transition-property(all);
+    @include transition-duration(.5s);
+    @include transition-timing-function(ease);
+    position: relative;
+    display: block;
+    margin-bottom: 10px;
+    h1 {
+        margin: 0px;
+    }
+}
+
+#flippers.header {
+    text-align: left;
+    margin: 0 0 10px 0;
+    padding-top: 10px;
+    left: 0px;
+}
+
+.flip-container {
+    @include perspective( 300);
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    margin: 0;
+}
+
+.flip-container:hover .flipper,
+.flip-container.hover .flipper {
+    transform: rotateY(180deg);
+}
+
+.flip-container.hover:hover .flipper {
+    transform: rotateY(220deg);
+}
+
+.flip-container,
+.front,
+.back {
+    width: $blockSize;
+    height: $blockSize;
+    margin-right: 0px;
+}
+
+.flip-container.newLine:before {}
+
+.flipper {
+    transform-style: preserve-3d;
+    @include transition-property(all);
+    @include transition-duration(.5s);
+    @include transition-timing-function(bounce);
+    position: relative;
+    h1 {
+        line-height: $blockSize;
+    }
+    i {
+        color: $brand-info;
+    }
+}
+
+.front,
+.back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+.front {
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f8f8f8;
+}
+
+.back {
+    transform: rotateY(180deg);
+    background: #f8f8f8;
+    a {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+}
+
+
+
+#matrix {
+    transform: translateX(100%);
+    &.reveal {
+        transform: translateX(0);
+    }
+}
+
+#template-container {
+    display: block;
+    position: relative;
+    margin: 0px auto;
+}
+
+button.btn {
+    padding: 5px 25px 5px 25px;
+}
+
+.card:hover {text-decoration: none;}
+
+.card-block {
+    @include soft-border();
+    padding: 20px 30px;
+    background-color: rgba(255, 255, 255, .85);
+    min-height: 160px;
+    cursor: pointer;
+    width: auto;
+    margin-top: 20px;
+    &.selected {
+        @include soft-shadow();
+        color: white;
+        border-color: darken($brand-primary, 5%);
+        background-color: $brand-primary;
+    }
+    &:hover {
+        @include soft-shadow();
+    }
+    i {
+        font-size: 3em;
+        float: left;
+        margin-right: 10px;
+    }
+    h4 {
+        opacity: 1;
+        margin-top: 2em;
+        line-height: 2em;
+    }
+    button.btn {
+        padding: 10px 25px 5px 25px;
+    }
+}
+
+.contact .card-block i {
+    margin-top: .75em;
+}
+
+.panel {
+    @include soft-border();
+    .panel-heading {
+        background-color: $highlight-hue;
+        i {
+            margin-top: -3px;
+        }
+    }
+    i {
+        font-size: 1.5em;
+        float: left;
+        margin: 4px 10px 0 0;
+    }
+    button.btn {
+        /*padding: 10px 25px 5px 25px;*/
+    }
+    .img-thumbnail {
+        position: relative;
+        float: right;
+        margin: 10px;
+        z-index: 0;
+    }
+}
+
+.well {
+    @include soft-border();
+    @include soft-shadow();
+}
+
+@media all and (min-width: 768px) {
+    .container {
+        /*max-width: 730px;*/
+    }
+    /* Remove the padding we set earlier */
+    .header,
+    .footer {
+        padding: 0;
+    }
+    /* Space out the masthead */
+    .header {
+        margin-bottom: 30px;
+    }
+/*    nav{
+        width:85%;
+    }*/
+    .nav {
+        width: auto;
+        right: auto;
+        position: relative;
+        li {
+            float: left;
+            margin-bottom: 3px;
+        }
+    }
+    #flippers {
+        margin: 150px 0 50px 10px;
+        text-align: center;
+    }
+    .flipper h1 {
+        line-height: $blockSize;
+    }
+    .projects .panel {
+        min-height: 400px;
+    }
+}
+
+#tags .btn.btn-primary {
+    margin: 2px;
+    font-size: 30px;
+}
+
+.words svg {
+    width: 50px;
+    stroke-dasharray: 380;
+    stroke-dashoffset: 380;
+    animation: dash 1s forwards;
+    animation-timing-function: cubic-bezier(0.195, 0.010, 0.940, 1.030);
+    cursor: pointer;
+    padding: 0px;
+    path,
+    polyline,
+    line {
+        fill: none;
+        stroke: black;
+        stroke-width: 2;
+    }
+    &:hover polyline,
+    &:hover path,
+    &:hover line {
+        stroke-width: 4;
+    }
+    rect {
+        display: none;
+        stroke-width: 1;
+        animation: all 1s ease;
+        fill-opacity: 0;
+    }
+    &:hover rect {
+        display: block;
+        fill: rgba(0, 0, 0, .5);
+        fill-opacity: .25;
+    }
+}
+
+@for $i from 1 through 100 {
+    .words svg:nth-child(#{$i}) {
+        animation-delay: #{($i/8)}s;
+    }
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
