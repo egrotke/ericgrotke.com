@@ -28,15 +28,24 @@
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
       <![endif]-->
-    <main  class="container" ng-app="egApp" ng-strict-di>
-        <nav class="header scrolled-up">
+    <main class="container" ng-app="egApp" ng-strict-di>
+        <nav class="header scrolled-up" ng-controller="LettersController">
             <ul class="nav nav-pills pull-right">
-                <li class="home active"><a href="#home" id="home-button">Home</a></li>
-                <li class="about"><a href="#about" id="about-button">About</a></li>
-                <li class="projects"><a href="#projects" id="projects-button">Projects</a></li>
-                <li class="contact"><a href="#contact" id="contact-button">Contact</a></li>
+                <li class="home" ng-class="getClass('home')">
+                    <a href="#home" id="home-button">Home</a>
+                </li>
+                <li class="about" ng-class="getClass('about')">
+                    <a href="#about" id="about-button">About</a>
+                </li>
+                <li class="projects" ng-class="getClass('projects')">
+                    <a href="#projects" id="projects-button">Projects</a>
+                </li>
+                <li class="contact" ng-class="getClass('contact')">
+                    <a href="#contact" id="contact-button">Contact</a>
+                </li>
             </ul>
-            <div id="flippers" ng-controller='LettersController' ng-cloak>
+
+            <div id="flippers" ng-controller='LettersController' ng-class="getFlipped()" ng-cloak>
                 <div ng-repeat="word in myData.words" class="repeater">
                     <div ng-repeat="block in word.blocks" class="flip-container block-{{ $index }} " ontouchstart="this.classList.toggle('hover');">
                         <div class="flipper">
@@ -91,6 +100,7 @@
     ga('create','UA-XXXXX-X');ga('send','pageview');
   </script>-->
     <!-- build:js({app,.tmp}) scripts/main.js -->
+    <!-- <script src="scripts/d3.js"></script> -->
     <script src="scripts/main.js"></script>
     <script src="scripts/steamgraph.js"></script>
     <script src="scripts/piechart.js"></script>

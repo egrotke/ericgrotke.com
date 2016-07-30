@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('ericgrotkecomApp', [
+  .module('egApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -33,3 +33,6 @@ angular
         redirectTo: '/'
       });
   });
+
+
+  
