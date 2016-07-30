@@ -1,0 +1,67 @@
+[{
+	"name": "eric",
+	"blocks": [{
+		"letter": "e",
+		"icon": "fa-envelope-o",
+		"url": "#contact",
+		"newLine": "newLine",
+		"title": "Email me here",
+		"action":"email"
+
+	}, {
+		"letter": "r",
+		"icon": "fa-linkedin-square",
+		"url": "#contact",
+		"title": "Connect on LinkedIn",
+		"action":"linkedin"
+	}, {
+		"letter": "i",
+		"icon": "fa-github-alt",
+		"url": "#contact",
+		"title": "View my Github",
+		"action": "github"
+	}, {
+		"letter": "c",
+		"icon": "fa-file",
+		"url": "#contact",
+		"title": "View my resume",
+		"action": "resume"
+	}]
+}, {
+	"name": "grotke",
+	"blocks": [
+		{
+		"letter": "g",
+		"icon": "fa-tags",
+		"url": "#tags",
+		"action": "tagMatrix"
+	}, 
+	{
+		"letter": "r",
+		"icon": "fa-desktop",
+		"url": "#projects",
+		"title": "Portfolio Archive",
+		"action": "flyDesign"
+	}, 
+	{
+		"letter": "o",
+		"icon": "fa-lightbulb-o",
+		"url": "#stylesheet",
+		"action": "stylesheet"
+	}, 
+	{
+		"letter": "t",
+		"icon": "fa-pie-chart",
+		"url": "#piechart",
+		"action": "piechart"
+	}, {
+		"letter": "k",
+		"icon": "fa-magic",
+		"url": "#home"
+	}, {
+		"letter": "e",
+		"icon": "fa-area-chart",
+		"url": "#streamgraph",
+		"action": "drawGraph"
+	}]
+}]
