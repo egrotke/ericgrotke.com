@@ -270,7 +270,7 @@ app.controller('TagsController', ['$rootScope', '$scope', '$http', function($roo
 			console.log('Error: didnnt get JSON' + data + status);
 	});
 
-	function letterOBJ(key, value) {
+	function LetterOBJ(key, value) {
 	   this.key = key;
 	   this.value = value;
 	}
