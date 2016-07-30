@@ -14,9 +14,9 @@ app.factory('PieService', function() {
 
         _chart.render = function (num) {
             if (!_svg) {
-                _svg = d3.select("#pie-chart").append("svg")
-                        .attr("height", _height)
-                        .attr("width", _width);
+                _svg = d3.select('#pie-chart').append('svg')
+                        .attr('height', _height)
+                        .attr('width', _width);
             }
             renderBody(_svg, num);
         };
@@ -29,8 +29,8 @@ app.factory('PieService', function() {
 
         function renderBody(svg, num) {
             if (!_bodyG)
-                _bodyG = svg.append("g")
-                        .attr("class", "body");
+                _bodyG = svg.append('g')
+                        .attr('class', 'body');
             for (var i = 0; i < num; i++) {
                 renderPie(i*50, 0);
             }
@@ -56,18 +56,18 @@ app.factory('PieService', function() {
 
             var xPos =  _width/6  + i/2,
                 yPos = _height/2 - 30,
-                rotation = x + "deg";
+                rotation = x + 'deg';
 
             // if (!_pieG)
-                _pieG = _bodyG.append("g")
-                        .attr("class", "pie")
-                        .attr("transform-origin", "left")
-                        .attr("transform", "translate(" 
+                _pieG = _bodyG.append('g')
+                        .attr('class', 'pie')
+                        .attr('transform-origin', 'left')
+                        .attr('transform', 'translate(' 
                             + xPos 
-                            + "," 
-                            + yPos + ")" );
-                            // + " rotateY("
-                            // + rotation + ")" );
+                            + ',' 
+                            + yPos + ')' );
+                            // + ' rotateY('
+                            // + rotation + ')' );
 
             renderSlices(pie, arc);
 
@@ -75,19 +75,19 @@ app.factory('PieService', function() {
         }
 
         function renderSlices(pie, arc) {
-            var slices = _pieG.selectAll("path.arc")
+            var slices = _pieG.selectAll('path.arc')
                     .data(pie(_data)); 
 
             slices.enter()
-                    .append("path")
-                    .attr("class", "arc")
-                    .attr("fill", function (d, i) {
+                    .append('path')
+                    .attr('class', 'arc')
+                    .attr('fill', function (d, i) {
                         var seed = Math.floor(Math.random()*100%20);
                         return _colors.range()[seed];
                     });
 
             slices.transition()
-                    .attrTween("d", function (d) {
+                    .attrTween('d', function (d) {
                         var currentArc = this.__current__; 
 
                         if (!currentArc)
@@ -106,20 +106,20 @@ app.factory('PieService', function() {
         }
 
         function renderLabels(pie, arc) {
-            var labels = _pieG.selectAll("text.label")
+            var labels = _pieG.selectAll('text.label')
                     .data(pie(_data)); 
 
             labels.enter()
-                    .append("text")
-                    .attr("class", "label");
+                    .append('text')
+                    .attr('class', 'label');
 
             labels.transition()
-                    .attr("transform", function (d) {
-                        return "translate(" 
-                            + arc.centroid(d) + ")"; 
+                    .attr('transform', function (d) {
+                        return 'translate(' 
+                            + arc.centroid(d) + ')'; 
                     })
-                    .attr("dy", ".35em")
-                    .attr("text-anchor", "middle")
+                    .attr('dy', '.35em')
+                    .attr('text-anchor', 'middle')
                     .text(function (d) {
                         return d.data.id;
                     });
@@ -184,7 +184,7 @@ app.factory('PieService', function() {
         var bandWidth = Math.random()*4+4,
             innerWidth = Math.random()*50+10;
 
-        d3.select("svg").remove();
+        d3.select('svg').remove();
         
         data = d3.range(points).map(function (i) {
             return {id: i, value: randomData()};

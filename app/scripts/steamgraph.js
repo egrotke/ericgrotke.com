@@ -12,9 +12,9 @@ function streamgraph() {
 
     _chart.render = function () {
         if (!_svg) {
-            _svg = d3.select("#graph").append("svg")
-                    .attr("height", _height)
-                    .attr("width", _width);
+            _svg = d3.select('#graph').append('svg')
+                    .attr('height', _height)
+                    .attr('width', _width);
 
             renderAxes(_svg);
 
@@ -25,8 +25,8 @@ function streamgraph() {
     };
 
     function renderAxes(svg) {
-        var axesG = svg.append("g")
-                .attr("class", "axes");
+        var axesG = svg.append('g')
+                .attr('class', 'axes');
 
         renderXAxis(axesG);
 
@@ -36,12 +36,12 @@ function streamgraph() {
     function renderXAxis(axesG) {
         var xAxis = d3.svg.axis()
                 .scale(_x.range([0, quadrantWidth()]))
-                .orient("bottom");
+                .orient('bottom');
 
-        axesG.append("g")
-                .attr("class", "x axis")
-                .attr("transform", function () {
-                    return "translate(" + xStart() + "," + (yStart() + 50) + ")";
+        axesG.append('g')
+                .attr('class', 'x axis')
+                .attr('transform', function () {
+                    return 'translate(' + xStart() + ',' + (yStart() + 50) + ')';
                 })
                 .call(xAxis);
     }
@@ -49,30 +49,30 @@ function streamgraph() {
     function renderYAxis(axesG) {
         var yAxis = d3.svg.axis()
                 .scale(_y.range([quadrantHeight(), 0]))
-                .orient("left");
+                .orient('left');
     }
 
     function defineBodyClip(svg) {
         var padding = 5;
 
-        svg.append("defs")
-                .append("clipPath")
-                .attr("id", "body-clip")
-                .append("rect")
-                .attr("x", 0 - padding)
-                .attr("y", 0)
-                .attr("width", quadrantWidth() + 2 * padding)
-                .attr("height", quadrantHeight());
+        svg.append('defs')
+                .append('clipPath')
+                .attr('id', 'body-clip')
+                .append('rect')
+                .attr('x', 0 - padding)
+                .attr('y', 0)
+                .attr('width', quadrantWidth() + 2 * padding)
+                .attr('height', quadrantHeight());
     }
 
     function renderBody(svg) {
         if (!_bodyG)
-            _bodyG = svg.append("g")
-                    .attr("class", "body")
-                    .attr("transform", "translate("
-                            + xStart() + ","
-                            + yEnd() + ")")
-                    .attr("clip-path", "url(#body-clip)");
+            _bodyG = svg.append('g')
+                    .attr('class', 'body')
+                    .attr('transform', 'translate('
+                            + xStart() + ','
+                            + yEnd() + ')')
+                    .attr('clip-path', 'url(#body-clip)');
 
         var stack = d3.layout.stack()
                 .offset('wiggle');
@@ -93,22 +93,22 @@ function streamgraph() {
                 });
         var someColors = d3.scale.category20();
 
-        _bodyG.selectAll("path.area")
+        _bodyG.selectAll('path.area')
                 .data(stackedData)
                 .enter()
-                .append("path")
-                .style("fill", function (d, i) {
+                .append('path')
+                .style('fill', function (d, i) {
                     
                     var seed = Math.floor(Math.random()*100%20);
                     // console.log(seed + ' : ' + someColors.range()[seed] );
                     return someColors.range()[seed];
                 })
-                .attr("class", "area");
+                .attr('class', 'area');
 
-        _bodyG.selectAll("path.area")
+        _bodyG.selectAll('path.area')
                 .data(_data)
                 .transition()
-                .attr("d", function (d) {
+                .attr('d', function (d) {
                     return area(d);
                 });
     }

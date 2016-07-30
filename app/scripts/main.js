@@ -86,7 +86,7 @@ app.controller('LettersController', ['$rootScope', '$scope', '$http', function($
 		$('#' + $scope.action).addClass('selected');
 
 		if (next && next.loadedTemplateUrl !== 'pages/streamgraph.html') {
-			d3.select("svg").remove();
+			d3.select('svg').remove();
 			$scope.streamData = 0;
 		}
 
@@ -208,7 +208,6 @@ app.controller('StreamController', ['$rootScope', '$scope', '$http', function($r
 		$scope.transitionState = 'active';
 		// $('#' + $scope.action).addClass('selected');
 
-		// d3.select("svg").remove();
 		$scope.streamData = 0;
 		loadGraph();
 	});
@@ -228,7 +227,7 @@ app.controller('StreamController', ['$rootScope', '$scope', '$http', function($r
     		
     	$scope.numberOfDataPoint = Math.floor(Math.random()*51) + 5;
 
-		d3.select("svg").remove();
+		d3.select('svg').remove();
 
         $scope.streamData = [];
 		for (var i = 0; i < numberOfSeries; ++i)
@@ -239,7 +238,7 @@ app.controller('StreamController', ['$rootScope', '$scope', '$http', function($r
 		$scope.chart = streamgraph()
 		        .x(d3.scale.linear().domain([0, $scope.numberOfDataPoint - 1]))
 		        .y(d3.scale.linear().domain([0, 65]))
-		        .colors(d3.scale.linear().range(["#aad", "#556"]));
+		        .colors(d3.scale.linear().range(['#aad', '#556']));
 		
 		$scope.streamData.forEach(function (series) {
 		    $scope.chart.addSeries(series);
@@ -282,7 +281,7 @@ app.controller('TagsController', ['$rootScope', '$scope', '$http', function($roo
         $('.words svg').remove();
 
 		str.split('').forEach(function(entry, index) {
-		    $rootScope.wordOBJ.push(new letterOBJ(index, entry));
+		    $rootScope.wordOBJ.push(new LetterOBJ(index, entry));
 		});
 	}
 

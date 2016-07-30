@@ -3,7 +3,7 @@
 	"icon": "fa-tag",
 	"url": "http://www.flydesignmedia.com/tagmatrix",
 	"action": "tagMatrix",
-	"thumbnail": "images/portfolio/TagMatrix-300x300.png",
+	"thumbnail": "images/TagMatrix.jpg",
 	"description": "Full stack Flickr API aggregator built with a Node server, Mongo DB, REST API in Express, Require AMD, Backbone MVC and Bootstrap CSS"
 }, {
 	"name": "Fly Design",
@@ -11,7 +11,7 @@
 	"url": "http://www.flydesignmedia.com/#eric",
 	"title": "Portfolio Archive",
 	"action": "flyDesign",
-	"thumbnail": "images/portfolio/FlyDesign-300x300.png",
+	"thumbnail": "images/FlyDesign.jpg",
 	"description": "Portfolio archive featuring samples of work from over a decade of Web Development"
 }, {
 	"name": "Meteor Lights",
@@ -19,7 +19,7 @@
 	"url": "http://www.meteorlights.com",
 	"title": "Meteor Lights",
 	"action": "meteorLights",
-	"thumbnail": "images/portfolio/Meteor-280x200.png",
+	"thumbnail": "images/Meteor.jpg",
 	"description": "Mid-Century Modern Lighting: Pendant Lamps and Drum Lampshades."
 }, {
 	"name": "Slim Jenkins",
@@ -27,6 +27,6 @@
 	"url": "http://www.slimjenkins.com",
 	"title": "Slim Jenkins",
 	"action": "slimJenkins",
-	"thumbnail": "images/portfolio/SlimJenkins-220x180.png",
+	"thumbnail": "images/SlimJenkins.jpg",
 	"description": "Website for a modern Swing Jazz band using HTML5 CSS3 and jQuery to create a custom audio player with a rotating Vinyl record. Built in the WordPress CMS with a responsive layout that re- sizes and functions nicely for all devices. All content is loaded with AJAX so that the audio is never interrupted."
 }]
