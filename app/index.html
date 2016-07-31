@@ -29,24 +29,9 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
       <![endif]-->
     <main class="container" ng-app="egApp" ng-strict-di>
-        <nav class="header scrolled-up" ng-controller="LettersController">
-            <ul class="nav nav-pills pull-right">
-                <li class="home" ng-class="getClass('home')">
-                    <a href="#home" id="home-button">Home</a>
-                </li>
-                <li class="about" ng-class="getClass('about')">
-                    <a href="#about" id="about-button">About</a>
-                </li>
-                <li class="projects" ng-class="getClass('projects')">
-                    <a href="#projects" id="projects-button">Projects</a>
-                </li>
-                <li class="contact" ng-class="getClass('contact')">
-                    <a href="#contact" id="contact-button">Contact</a>
-                </li>
-            </ul>
-
-            <div id="flippers" ng-controller='LettersController' ng-class="getFlipped()" ng-cloak>
-                <div ng-repeat="word in myData.words" class="repeater">
+        <header >
+            <div id="flippers" ng-controller='LettersController' ng-class="getFlipperPos()" ng-cloak>
+                <div ng-repeat="word in myData.words" class="repeater word-{{ $index }}">
                     <div ng-repeat="block in word.blocks" class="flip-container block-{{ $index }} " ontouchstart="this.classList.toggle('hover');">
                         <div class="flipper">
                             <div class="front">
@@ -62,17 +47,31 @@
                     <br />
                 </div>
             </div>
-        </nav>
+            <nav ng-class="getScrolled()" class="header col-sm-offset-6 col-sm-6" ng-controller="LettersController">
+                <ul class="nav nav-pills pull-right">
+                    <li class="home" ng-class="getClass('home')">
+                        <a href="#home" id="home-button">Home</a>
+                    </li>
+                    <li class="about" ng-class="getClass('about')">
+                        <a href="#about" id="about-button">About</a>
+                    </li>
+                    <li class="projects" ng-class="getClass('projects')">
+                        <a href="#projects" id="projects-button">Projects</a>
+                    </li>
+                    <li class="contact" ng-class="getClass('contact')">
+                        <a href="#contact" id="contact-button">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
         <!-- angular templating -->
         <!-- this is where content will be injected -->
         <div ng-view id="template-container"></div>
     </main>
     <footer class="container">
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12  col-lg-12">
-                <div class="footer">
-                    <p>&copy; egrotke</p>
-                </div>
+            <div class="footer col-xs-12 col-sm-12 col-md-12  col-lg-12">
+                <p>&copy; egrotke</p>
             </div>
         </div>
     </footer>

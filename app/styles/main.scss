@@ -3,9 +3,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "vars_eg";
 //Graph stuff
 @import "d3_styles";
-
 @import 'mixins';
-
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
@@ -26,7 +24,6 @@ $blockSize: 60px;
 
 $highlight-hue: rgba(217, 237, 247, .75);
 $bg-hue: Cornsilk;
-
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
@@ -43,7 +40,7 @@ margin: 10px;
 /* Space out content a bit */
 
 body {
-    background-color: $bg-hue;
+    background-color: $brand-primary;
 }
 
 #bg {
@@ -63,7 +60,7 @@ body {
 }
 
 .container {
-    padding-top: 20px;
+    padding-top: 0px;
     padding-bottom: 20px;
     margin-top: 0;
     top: 0;
@@ -85,8 +82,13 @@ main {
 
 /* Custom page header */
 
-.header {
-    overflow: hidden;
+nav {
+    @include transition-property(all);
+    @include transition-duration(.5s);
+    @include transition-timing-function(ease);
+    z-index: 10;
+    margin-top: 20px;
+    min-height: 70px;
     /* Make the masthead heading the same height as the navigation */
     h3 {
         margin-top: 0;
@@ -96,42 +98,24 @@ main {
     }
 }
 
-
-/* Custom page footer */
-
-.footer {
-    width: 100%;
-    color: #e5e5e5;
-    border-top: 1px solid #e5e5e5;
-    text-align: right;
-}
-
-.container-narrow > hr {
-    margin: 30px 0;
-}
-
-/*nav.scrolled-up {
+nav.scrolled {
     position: fixed;
-    width:100%;
-    z-index:10;
-}*/
+    margin-top: 5px;
+    right: 0;
+    /*background: rgba(0,0,0,.5);*/
+}
 
 .nav {
-    z-index: 5;
-    margin-right: 0;
-    width: 100px;
-    right: -5px;
-    position: relative;
+    z-index: 400;
     li {
         float: right;
         margin-bottom: 3px;
         margin-right: 5px;
     }
     li:last-child {
-        margin-right: 0;
+        margin-right: 15px;
     }
 }
-
 
 .nav > li > a {
     background-color: $brand-primary;
@@ -151,22 +135,60 @@ nav .nav.nav-pills > .active > a {
 }
 
 #flippers {
+    position: absolute;
     @include transition-property(all);
     @include transition-duration(.5s);
     @include transition-timing-function(ease);
-    position: relative;
     display: block;
-    margin-bottom: 10px;
+    width:80%;
+    margin: 0px auto;
+    z-index: 500;
     h1 {
         margin: 0px;
     }
-}
-
-#flippers.header {
-    text-align: left;
-    margin: 0 0 10px 0;
-    padding-top: 10px;
-    left: 0px;
+    .word-0, .word-1 {
+        position: absolute;
+        @include transition-property(all);
+        @include transition-duration(.5s);
+        @include transition-timing-function(ease);
+    }
+    .word-0{
+        margin-top: 0px;
+        margin-left: 200px;
+    }
+    .word-1{
+        margin-top: 70px;
+        margin-left: 200px;
+    }
+    &.scrolled {
+        /*background: rgba(0,0,0,.5);*/
+        /*height:72px;*/
+        position: fixed;
+        width:60%;
+        margin-top:0px;
+        top: 0;
+        left: 0;
+        .word-0 {
+            margin-left: 0px;
+            margin-top:  0px;
+        }
+        .word-1 {
+            margin-left: 250px;
+            margin-top:  0px;
+        }
+    }
+    &.subPage {
+        text-align: left;
+        margin: 20px 0;
+        .word-0 {
+            margin-left: 0px;
+            margin-top:  0px;
+        }
+        .word-1 {
+            margin-left: 0px;
+            margin-top: 70px;
+        }
+    }
 }
 
 .flip-container {
@@ -228,14 +250,13 @@ nav .nav.nav-pills > .active > a {
 .back {
     transform: rotateY(180deg);
     background: #f8f8f8;
+    @include soft-border();
     a {
         width: 100%;
         height: 100%;
         display: block;
     }
 }
-
-
 
 #matrix {
     transform: translateX(100%);
@@ -247,14 +268,30 @@ nav .nav.nav-pills > .active > a {
 #template-container {
     display: block;
     position: relative;
-    margin: 0px auto;
+    margin: 200px auto 30px auto;
+}
+
+
+/* Custom page footer */
+
+.footer {
+    width: 100%;
+    color: #e5e5e5;
+    border-top: 1px solid #e5e5e5;
+    text-align: right;
+}
+
+.container-narrow > hr {
+    margin: 30px 0;
 }
 
 button.btn {
     padding: 5px 25px 5px 25px;
 }
 
-.card:hover {text-decoration: none;}
+.card:hover {
+    text-decoration: none;
+}
 
 .card-block {
     @include soft-border();
@@ -319,6 +356,7 @@ button.btn {
 .well {
     @include soft-border();
     @include soft-shadow();
+    background-color: rgba(240,240,240,.8);//#e9ebee;
 }
 
 @media all and (min-width: 768px) {
@@ -334,7 +372,7 @@ button.btn {
     .header {
         margin-bottom: 30px;
     }
-/*    nav{
+    /*    nav{
         width:85%;
     }*/
     .nav {

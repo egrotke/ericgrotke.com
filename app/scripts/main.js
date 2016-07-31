@@ -8,7 +8,7 @@ app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
 
     // route for the home page
-    .when('/home', {
+        .when('/home', {
         templateUrl: 'pages/home.html',
         reloadOnSearch: false
     })
@@ -31,13 +31,13 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: 'pages/streamgraph.html',
             controller: 'StreamController',
             reloadOnSearch: false
-    })
-    // route for the piechart page
-    .when('/piechart', {
-        templateUrl: 'pages/piechart.html',
-        controller: 'PieChartController',
-        reloadOnSearch: false
-    })
+        })
+        // route for the piechart page
+        .when('/piechart', {
+            templateUrl: 'pages/piechart.html',
+            controller: 'PieChartController',
+            reloadOnSearch: false
+        })
 
     // route for the projects page
     .when('/projects', {
@@ -60,7 +60,7 @@ app.config(['$routeProvider', function($routeProvider) {
 
 }]);
 
-app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location',  function($rootScope, $scope, $http, $location) {
+app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location', function($rootScope, $scope, $http, $location) {
     $scope.myData = {};
     $http.get('json/eg.json')
         .then(function(data) {
@@ -78,19 +78,43 @@ app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location
             console.log('Error: didnnt get JSON' + data + status);
         });
 
-	$scope.getClass = function (path) {
-		if ($location.path()) {
-			return ($location.path().substr(1, path.length) === path) ? '' : 'active';
-		}
-		else if (path === 'home') {
-			return 'active';
-		}
+    $scope.getClass = function(path) {
+        if ($location.path()) {
+            return ($location.path().substr(1, path.length) === path) ? '' : 'selected';
+        } else if (path === 'home') {
+            return 'selected';
+        }
 
-	};
+    };
 
-	$scope.getFlipped = function () {
-	  return ($location.path() === '/home' || $location.path() === '') ? '' : 'header';
-	};
+    $rootScope.getScrolled = function() {
+        return ($rootScope.scrolled) ? 'scrolled' : '';
+    }
+
+    $rootScope.scrolled = '';
+
+    window.onscroll = function(e) {
+        if (!$rootScope.scrolled && document.body.scrollTop > 20) {
+            $rootScope.$apply(function() {
+                $rootScope.scrolled = 'scrolled';
+            });
+            flipBoxes(0, 12);
+        } else if ($rootScope.scrolled && document.body.scrollTop < 20) {
+            $rootScope.$apply(function() {
+                $rootScope.scrolled = '';
+            });
+            flipBoxes(0, 0);
+        }
+    }
+
+    $scope.getFlipperPos = function() {
+        if ($rootScope.scrolled) {
+
+            return 'scrolled';
+        } else {
+            return ($location.path() === '/home' || $location.path() === '') ? '' : 'subPage';
+        }
+    };
     $scope.$on('$routeChangeSuccess', function(scope, next) {
         $scope.transitionState = 'active';
 
@@ -101,11 +125,11 @@ app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location
         if (next && next.loadedTemplateUrl === 'pages/home.html') {
             flipBoxes(0, 0);
         } else if (next && next.loadedTemplateUrl === 'pages/contact.html') {
-	        flipBoxes(0, 4);
+            flipBoxes(0, 4);
         } else if (next && next.loadedTemplateUrl === 'pages/about.html') {
-	        flipBoxes(0, 0);
+            flipBoxes(0, 0);
         } else if (next && next.loadedTemplateUrl === 'pages/projects.html') {
-	        flipBoxes(4, 12);
+            flipBoxes(4, 12);
         }
 
     });
@@ -113,9 +137,6 @@ app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location
     $scope.getImage = function(site) {
         return site.thumbnail ? site.thumbnail : '';
     };
-
-
-
 
     var doStuffWithData = function() {
         $scope.template = $scope.myData.words[0];
@@ -160,6 +181,7 @@ app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location
             }
         });
     };
+
 }]);
 
 
