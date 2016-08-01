@@ -91,7 +91,7 @@ app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location
         return ($rootScope.scrolled) ? 'scrolled' : '';
     }
 
-    $rootScope.scrolled = '';
+    // $rootScope.scrolled = '';
 
     window.onscroll = function(e) {
         if (!$rootScope.scrolled && document.body.scrollTop > 20) {
@@ -104,6 +104,8 @@ app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location
                 $rootScope.scrolled = '';
             });
             flipBoxes(0, 0);
+        } else {
+        	
         }
     }
 

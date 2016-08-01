@@ -96,13 +96,30 @@ nav {
         line-height: 40px;
         padding-bottom: 19px;
     }
+    li {
+        @include transition-property(all);
+        @include transition-duration(.5s);
+        @include transition-timing-function(ease);
+    }
 }
 
 nav.scrolled {
     position: fixed;
     margin-top: 5px;
     right: 0;
-    /*background: rgba(0,0,0,.5);*/
+    /*transform: rotate(45deg);*/
+    /*background: rgba(240,240,240,.75);*/
+    li {
+        transform: rotate(45deg);
+        display: block;
+        float: none;
+        width:70px;
+        text-align: center;
+        margin-top:18px;
+    }
+    .nav > li > a {
+        padding: 0 10px;
+    }
 }
 
 .nav {
@@ -140,41 +157,43 @@ nav .nav.nav-pills > .active > a {
     @include transition-duration(.5s);
     @include transition-timing-function(ease);
     display: block;
-    width:80%;
+    width: 80%;
     margin: 0px auto;
     z-index: 500;
     h1 {
         margin: 0px;
     }
-    .word-0, .word-1 {
+    .word-0,
+    .word-1 {
         position: absolute;
         @include transition-property(all);
         @include transition-duration(.5s);
         @include transition-timing-function(ease);
     }
-    .word-0{
+    .word-0 {
         margin-top: 0px;
         margin-left: 200px;
     }
-    .word-1{
+    .word-1 {
         margin-top: 70px;
         margin-left: 200px;
     }
     &.scrolled {
         /*background: rgba(0,0,0,.5);*/
         /*height:72px;*/
+        text-align:left;
         position: fixed;
-        width:60%;
-        margin-top:0px;
+        width: 100px;
+        margin-top: 0px;
         top: 0;
         left: 0;
         .word-0 {
             margin-left: 0px;
-            margin-top:  0px;
+            margin-top: 5px;
         }
         .word-1 {
-            margin-left: 250px;
-            margin-top:  0px;
+            margin-left: 0px;
+            margin-top: 300px;
         }
     }
     &.subPage {
@@ -182,7 +201,7 @@ nav .nav.nav-pills > .active > a {
         margin: 20px 0;
         .word-0 {
             margin-left: 0px;
-            margin-top:  0px;
+            margin-top: 0px;
         }
         .word-1 {
             margin-left: 0px;
@@ -356,7 +375,7 @@ button.btn {
 .well {
     @include soft-border();
     @include soft-shadow();
-    background-color: rgba(240,240,240,.8);//#e9ebee;
+    background-color: rgba(240, 240, 240, .8); //#e9ebee;
 }
 
 @media all and (min-width: 768px) {
