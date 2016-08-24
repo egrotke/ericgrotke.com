@@ -110,6 +110,7 @@ function streamgraph() {
         _bodyG.selectAll('path.area')
             .data(_data)
             .transition()
+            .duration(400)
             .attr('d', function(d) {
                 return area(d);
             });

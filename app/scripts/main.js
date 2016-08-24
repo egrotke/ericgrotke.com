@@ -88,15 +88,19 @@ app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location
     };
 
     $rootScope.getScrolled = function() {
-        return ($rootScope.scrolled) ? 'scrolled' : '';
+        return $rootScope.scrolled;
     }
 
-    // $rootScope.scrolled = '';
 
     window.onscroll = function(e) {
-        if (!$rootScope.scrolled && document.body.scrollTop > 20) {
+        if ($rootScope.scrolled !== 'scrolled' && document.body.scrollTop > 200) {
             $rootScope.$apply(function() {
                 $rootScope.scrolled = 'scrolled';
+            });
+            flipBoxes(0, 12);
+        } else if ($rootScope.scrolled !== 'midscroll' && document.body.scrollTop > 20 && document.body.scrollTop < 200) {
+            $rootScope.$apply(function() {
+                $rootScope.scrolled = 'midscroll';
             });
             flipBoxes(0, 12);
         } else if ($rootScope.scrolled && document.body.scrollTop < 20) {
@@ -104,15 +108,12 @@ app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location
                 $rootScope.scrolled = '';
             });
             flipBoxes(0, 0);
-        } else {
-        	
-        }
+        } 
     }
 
     $scope.getFlipperPos = function() {
         if ($rootScope.scrolled) {
-
-            return 'scrolled';
+            return $rootScope.scrolled;
         } else {
             return ($location.path() === '/home' || $location.path() === '') ? '' : 'subPage';
         }
@@ -179,7 +180,7 @@ app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location
             if (key >= start && key < finish) {
                 setTimeout(function() {
                     a.addClass('hover');
-                }, 40 * (key - start));
+                }, 150 * (key - start));
             }
         });
     };
@@ -230,7 +231,7 @@ app.controller('StreamController', ['$rootScope', '$scope', function($rootScope,
     };
 
     var loadGraph = function() {
-        var numberOfSeries = Math.floor(Math.random() * 8) + 4;
+        var numberOfSeries = Math.floor(Math.random() * 10) + 4;
 
         $scope.numberOfDataPoint = Math.floor(Math.random() * 51) + 5;
 
@@ -251,7 +252,18 @@ app.controller('StreamController', ['$rootScope', '$scope', function($rootScope,
             $scope.chart.addSeries(series);
         });
         $scope.chart.render();
-        // setTimeout(function() {$scope.$apply()},1);
+
+            
+        setTimeout(function() {updateGraph();}, .40);
+        var x = 0;
+        var intervalID = setInterval(function() {
+
+            updateGraph();
+
+            if (++x === 2) {
+                window.clearInterval(intervalID);
+            }
+        }, 400);
 
     };
 
@@ -313,15 +325,18 @@ app.controller('TagsController', ['$rootScope', '$scope', '$http', function($roo
 app.directive('letter', ['$compile', '$http', '$templateCache', function($compile, $http, $templateCache) {
 
     var getTemplate = function(letterCode) {
-        var templateLoader, templateUrl,
-            baseUrl = 'svg/',
-            letters = 'abcdefghijklmnopqrstuvwxyz1234567890(){}=+;:';
+        var templateLoader, templateUrl = 'svg/',
+            letters = 'abcdefghijklmnopqrstuvwxyz1234567890(){}=+;<>-';
         letterCode = letterCode.toLowerCase();
 
         if (letters.indexOf(letterCode) > -1) {
-            templateUrl = baseUrl + letterCode + '.svg';
+            templateUrl += letterCode + '.svg';
+        } else if (letterCode === '/'){
+            templateUrl += 'slash.svg';
+        } else if (letterCode === ':'){
+            templateUrl += 'colon.svg';
         } else {
-            templateUrl = baseUrl + 'blank.svg';
+            templateUrl += 'blank.svg';
         }
 
         templateLoader = $http.get(templateUrl, { cache: $templateCache });

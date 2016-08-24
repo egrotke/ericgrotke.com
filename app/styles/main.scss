@@ -89,6 +89,8 @@ nav {
     z-index: 10;
     margin-top: 20px;
     min-height: 70px;
+    position: fixed;
+    right:30px;
     /* Make the masthead heading the same height as the navigation */
     h3 {
         margin-top: 0;
@@ -101,8 +103,31 @@ nav {
         @include transition-duration(.5s);
         @include transition-timing-function(ease);
     }
+    .nav > li > a {
+        padding: 10px 20px;
+        @include transition-property(all);
+        @include transition-duration(.5s);
+        @include transition-timing-function(ease);
+    }
 }
-
+nav.midscroll {
+    position: fixed;
+    margin-top: 5px;
+    right: 0;
+    /*transform: rotate(45deg);*/
+    /*background: rgba(240,240,240,.75);*/
+    li {
+        /*transform: rotate(45deg);*/
+        /*display: block;*/
+        /*float: none;*/
+        /*width: 70px;*/
+        /*text-align: center;*/
+        /*margin-top: 18px;*/
+    }
+    .nav > li > a {
+        padding: 10px 10px;
+    }
+}
 nav.scrolled {
     position: fixed;
     margin-top: 5px;
@@ -113,9 +138,9 @@ nav.scrolled {
         transform: rotate(45deg);
         display: block;
         float: none;
-        width:70px;
+        width: 70px;
         text-align: center;
-        margin-top:18px;
+        margin-top: 18px;
     }
     .nav > li > a {
         padding: 0 10px;
@@ -178,22 +203,36 @@ nav .nav.nav-pills > .active > a {
         margin-top: 70px;
         margin-left: 200px;
     }
+    &.midscroll {
+        text-align: left;
+        position: fixed;
+        width: 800px;
+        margin-top: 5px;
+        top: 0;
+        left: 0;
+        .word-1 {
+            margin-left: 260px;
+            margin-top: 0px;
+        }
+        .word-0 {
+            margin-left: 0px;
+            margin-top: 0px;
+        }
+    }
     &.scrolled {
-        /*background: rgba(0,0,0,.5);*/
-        /*height:72px;*/
-        text-align:left;
+        text-align: left;
         position: fixed;
         width: 100px;
         margin-top: 0px;
         top: 0;
         left: 0;
-        .word-0 {
+        .word-1 {
             margin-left: 0px;
             margin-top: 5px;
         }
-        .word-1 {
+        .word-0 {
             margin-left: 0px;
-            margin-top: 300px;
+            margin-top: 450px;
         }
     }
     &.subPage {
@@ -274,6 +313,9 @@ nav .nav.nav-pills > .active > a {
         width: 100%;
         height: 100%;
         display: block;
+    }
+    &:hover {
+        @include soft-shadow();
     }
 }
 
@@ -415,13 +457,13 @@ button.btn {
     }
 }
 
-#tags .btn.btn-primary {
+#tags .btn {
     margin: 2px;
-    font-size: 30px;
+    font-size: 24px;
 }
 
 .words svg {
-    width: 50px;
+    width: 30px;
     stroke-dasharray: 380;
     stroke-dashoffset: 380;
     animation: dash 1s forwards;
@@ -433,7 +475,7 @@ button.btn {
     line {
         fill: none;
         stroke: black;
-        stroke-width: 2;
+        stroke-width: 3;
     }
     &:hover polyline,
     &:hover path,
