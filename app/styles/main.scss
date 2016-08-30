@@ -114,39 +114,32 @@ nav.midscroll {
     position: fixed;
     margin-top: 5px;
     right: 0;
-    /*transform: rotate(45deg);*/
-    /*background: rgba(240,240,240,.75);*/
     li {
-        /*transform: rotate(45deg);*/
-        /*display: block;*/
-        /*float: none;*/
-        /*width: 70px;*/
-        /*text-align: center;*/
-        /*margin-top: 18px;*/
+        transform: rotate(0deg);
     }
     .nav > li > a {
         padding: 10px 10px;
     }
 }
-nav.scrolled {
-    position: fixed;
-    margin-top: 5px;
-    right: 0;
-    /*transform: rotate(45deg);*/
-    /*background: rgba(240,240,240,.75);*/
-    li {
-        transform: rotate(45deg);
-        display: block;
-        float: none;
-        width: 70px;
-        text-align: center;
-        margin-top: 18px;
-    }
-    .nav > li > a {
-        padding: 0 10px;
+@media all and (min-width: 500px) {
+
+    nav.scrolled {
+        position: fixed;
+        margin-top: 5px;
+        right: 0;
+        li {
+            transform: rotate(45deg);
+            display: block;
+            float: none;
+            width: 70px;
+            text-align: center;
+            margin-top: 18px;
+        }
+        .nav > li > a {
+            padding: 0 10px;
+        }
     }
 }
-
 .nav {
     z-index: 400;
     li {
@@ -332,6 +325,28 @@ nav .nav.nav-pills > .active > a {
     margin: 200px auto 30px auto;
 }
 
+@media all and (max-width: 500px) {
+    #template-container {
+        margin: 200px 5px 30px 55px;
+    }
+
+    #flippers, #flippers.midscroll, #flippers.scrolled{
+        text-align: left;
+        position: fixed;
+        width: 100px;
+        margin-top: 0px;
+        top: 0;
+        left: 0;
+        .word-1 {
+            margin-left: 0px;
+            margin-top: 5px;
+        }
+        .word-0 {
+            margin-left: 0px;
+            margin-top: 450px;
+        }
+    }
+}
 
 /* Custom page footer */
 
