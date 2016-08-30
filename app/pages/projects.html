@@ -1,12 +1,19 @@
 <h3>Featured Projects</h3>
 <section class="row projects" ng-controller='LettersController' ng-cloak>
-    <div ng-repeat="site in projectsData.sites" class=" col-xs-12 col-md-6">
+    <div id='pics'>
+       <img class="img-thumbnail" src="images/TagMatrix.jpg"  width=220 height=150 />
+       <img class="img-thumbnail" src="images/FlyDesign.jpg"  width=220 height=150 />
+       <img class="img-thumbnail" src="images/Meteor.jpg"  width=220 height=150 />
+       <img class="img-thumbnail" src="images/SlimJenkins.jpg"  width=220 height=150 />
+    </div>
+
+    <div ng-repeat="site in projectsData.sites track by $index" class=" col-xs-12 col-md-6">
         <div id="{{site.action}}" class="panel project">
             <div class="panel-heading">
                 <H4><i class="fa {{site.icon}}"></i>{{site.name}}</H4>
             </div>
             <div class="panel-body">
-                    <img class="img-thumbnail" data-ng-src="{{getImage(site)}}" width=220 height=150 />
+                    <img class="img-thumbnail" data-ng-src="{{getImage(site, $index)}}" width=220 height=150 />
                 <p>{{site.description}}</p>
                 <p>
                     <a href="{{site.url}}" target="_blank" class="btn">
@@ -16,4 +23,5 @@
             </div>
         </div>
     </div>
+
 </section>

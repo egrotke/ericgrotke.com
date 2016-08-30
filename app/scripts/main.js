@@ -134,11 +134,18 @@ app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location
         } else if (next && next.loadedTemplateUrl === 'pages/projects.html') {
             flipBoxes(4, 12);
         }
-
     });
 
-    $scope.getImage = function(site) {
-        return site.thumbnail ? site.thumbnail : '';
+   $scope.projectPics = function() {
+        var urls = [];
+        $('#pics img').each(function(i,val) {
+          urls[i] = $(this).attr('src');
+        });
+        return urls;
+   };
+
+    $scope.getImage = function(site, i) {
+        return  $scope.projectPics()[i] ? $scope.projectPics()[i] : (site.thumbnail ? site.thumbnail : '');
     };
 
     var doStuffWithData = function() {
