@@ -88,7 +88,7 @@ nav {
     @include transition-timing-function(ease);
     z-index: 10;
     margin-top: 20px;
-    min-height: 70px;
+    /*min-height: 70px;*/
     position: fixed;
     right:30px;
     /* Make the masthead heading the same height as the navigation */
@@ -121,7 +121,7 @@ nav.midscroll {
         padding: 10px 10px;
     }
 }
-@media all and (min-width: 500px) {
+@media all and (min-width: 700px) {
 
     nav.scrolled {
         position: fixed;
@@ -138,6 +138,9 @@ nav.midscroll {
         .nav > li > a {
             padding: 0 10px;
         }
+    }
+    main.container.scrolled {
+        margin-left: 65px;
     }
 }
 .nav {
@@ -311,7 +314,6 @@ nav .nav.nav-pills > .active > a {
         @include soft-shadow();
     }
 }
-
 #matrix {
     transform: translateX(100%);
     &.reveal {
@@ -325,28 +327,38 @@ nav .nav.nav-pills > .active > a {
     margin: 200px auto 30px auto;
 }
 
-@media all and (max-width: 500px) {
+@media all and (max-width: 700px) {
+    nav, nav.midscroll, nav.scrolled{
+        position:fixed;
+        top:1px;
+        right:auto;
+        padding:0;
+        margin:0;
+        left:14px;
+        width:100%;
+        .nav > li{
+            width:23%;
+            border:1px solid lightgrey;
+            margin:0px 1px 0 0;
+        }
+        .nav > li > a {
+            padding: 5px 10px;
+            text-align:center;
+        }
+    }
+    .nav li{float:left;}
     #template-container {
-        margin: 200px 5px 30px 55px;
+        margin: 50px 15px 30px 15px;
     }
 
     #flippers, #flippers.midscroll, #flippers.scrolled{
-        text-align: left;
-        position: fixed;
-        width: 100px;
-        margin-top: 0px;
-        top: 0;
-        left: 0;
-        .word-1 {
-            margin-left: 0px;
-            margin-top: 5px;
-        }
-        .word-0 {
-            margin-left: 0px;
-            margin-top: 450px;
-        }
+        display:none;
     }
+
 }
+
+
+
 
 /* Custom page footer */
 

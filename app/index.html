@@ -28,7 +28,7 @@
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
       <![endif]-->
-    <main class="container" ng-app="egApp" ng-strict-di>
+    <main class="container" ng-app="egApp" ng-class="getScrolled()" ng-strict-di>
         <header >
             <div id="flippers" ng-controller='LettersController' ng-class="getFlipperPos()" ng-cloak>
                 <div ng-repeat="word in myData.words" class="repeater word-{{ $index }}">
@@ -47,8 +47,8 @@
                     <br />
                 </div>
             </div>
-            <nav ng-class="getScrolled()" class="header col-sm-offset-6 col-sm-6" ng-controller="LettersController">
-                <ul class="nav nav-pills pull-right">
+            <nav ng-class="getScrolled()" class="header" ng-controller="LettersController">
+                <ul class="nav nav-pills">
                     <li class="home" ng-class="getClass('home')">
                         <a href="#home" id="home-button">Home</a>
                     </li>
@@ -66,7 +66,7 @@
         </header>
         <!-- angular templating -->
         <!-- this is where content will be injected -->
-        <div ng-view id="template-container"></div>
+        <div ng-view id="template-container" ></div>
     </main>
     <footer class="container">
         <div class="row">
