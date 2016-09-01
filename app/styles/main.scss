@@ -494,7 +494,7 @@ button.btn {
 }
 
 .words svg {
-    width: 30px;
+    width: 20px;
     stroke-dasharray: 380;
     stroke-dashoffset: 380;
     animation: dash 1s forwards;
@@ -528,12 +528,20 @@ button.btn {
         display:block;
         height:0;
     }
-   
+    &.nada{
+        display:none;
+        height:0;
+        width:0;
+    } 
+    &.tab{
+        height:0px;
+        width:40px;
+    }  
 }
 
-@for $i from 1 through 100 {
+@for $i from 1 through 200 {
     .words svg:nth-child(#{$i}) {
-        animation-delay: #{($i/8)}s;
+        animation-delay: #{($i/16)}s;
     }
 }
 

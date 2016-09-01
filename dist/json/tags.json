@@ -1,9 +1,9 @@
 [
-	{"name" :"JavaScript", "description": "var add = (function () {@ var counter = 0;@ return function () {@return counter += 1;}})(); @add();"}, 
-	{"name" :"CSS3", "description": "div {transform: rotateZ(90deg);}"}, 
-	{"name" :"HTML5", "description": "<nav></nav>@<main>@<section>@<article>@<h4>Hello World!</h4>@</article>@</section>@<aside>@</aside>@</main>"}, 
+	{"name" :"JavaScript", "description": "var add = (function () {&br;&tb;var counter = 0;&br;&tb;return function () {&br;&tb;&tb;return counter += 1;&tb;} })();&br;&br;add();"}, 
+	{"name" :"CSS3", "description": "div {&br;&tb;transform: rotateZ(90deg);&br;}"}, 
+	{"name" :"HTML5", "description": "<nav></nav>&br;&tb;<main>&br;&tb;&tb;<section>&br;&tb;&tb;&tb;<article>&br;&tb;&tb;&tb;&tb;<h4>Hello World!</h4>&br;&tb;&tb;&tb;</article>&br;&tb;&tb;</section>&br;&tb;&tb;<aside></aside>&br;</main>"}, 
 	{"name" :"Angularjs", "description": "<div ng-app='myApp' ng-controller='myCtrl'></div>"}, 
-	{"name" :"React", "description": "var Box = React.createClass({render: function() {return (<div>Hello, world!</div>);});"}, 
+	{"name" :"React", "description": "var Box = React.createClass(&br;{render: function() {&br;return (<div>Hello, world!</div>);});"}, 
 	{"name" :"Backbone", "description": ""}, 
 	{"name" :"Bootstrap", "description": ""}, 
 	{"name" :"Grunt", "description": ""}, 
