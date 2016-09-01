@@ -10,6 +10,7 @@
   "strict": true,
   "undef": true,
   "unused": true,
+  "-W117": true,
   "globals": {
     "angular": false
   }

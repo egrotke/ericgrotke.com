@@ -62,91 +62,6 @@ app.config(['$routeProvider', function($routeProvider) {
 
 app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location', function($rootScope, $scope, $http, $location) {
     $scope.myData = {};
-    $http.get('json/eg.json')
-        .then(function(data) {
-            $scope.myData.words = data.data;
-            doStuffWithData();
-        }, function(data, status) {
-            console.log('Error: didnnt get JSON' + data + status);
-        });
-
-    $scope.projectsData = {};
-    $http.get('json/projects.json')
-        .then(function(data) {
-            $scope.projectsData.sites = data.data;
-        }, function(data, status) {
-            console.log('Error: didnnt get JSON' + data + status);
-        });
-
-    $scope.getClass = function(path) {
-        if ($location.path()) {
-            return ($location.path().substr(1, path.length) === path) ? '' : 'selected';
-        } else if (path === 'home') {
-            return 'selected';
-        }
-
-    };
-
-    $rootScope.getScrolled = function() {
-        return $rootScope.scrolled;
-    }
-
-
-    window.onscroll = function(e) {
-        if ($rootScope.scrolled !== 'scrolled' && document.body.scrollTop > 200) {
-            $rootScope.$apply(function() {
-                $rootScope.scrolled = 'scrolled';
-            });
-            flipBoxes(0, 12);
-        } else if ($rootScope.scrolled !== 'midscroll' && document.body.scrollTop > 20 && document.body.scrollTop < 200) {
-            $rootScope.$apply(function() {
-                $rootScope.scrolled = 'midscroll';
-            });
-            flipBoxes(0, 12);
-        } else if ($rootScope.scrolled && document.body.scrollTop < 20) {
-            $rootScope.$apply(function() {
-                $rootScope.scrolled = '';
-            });
-            flipBoxes(0, 0);
-        } 
-    }
-
-    $scope.getFlipperPos = function() {
-        if ($rootScope.scrolled) {
-            return $rootScope.scrolled;
-        } else {
-            return ($location.path() === '/home' || $location.path() === '') ? '' : 'subPage';
-        }
-    };
-    $scope.$on('$routeChangeSuccess', function(scope, next) {
-        $scope.transitionState = 'active';
-
-        if (next && next.loadedTemplateUrl !== 'pages/streamgraph.html') {
-            d3.select('svg').remove();
-            $scope.streamData = 0;
-        }
-        if (next && next.loadedTemplateUrl === 'pages/home.html') {
-            flipBoxes(0, 0);
-        } else if (next && next.loadedTemplateUrl === 'pages/contact.html') {
-            flipBoxes(0, 4);
-        } else if (next && next.loadedTemplateUrl === 'pages/about.html') {
-            flipBoxes(0, 0);
-        } else if (next && next.loadedTemplateUrl === 'pages/projects.html') {
-            flipBoxes(4, 12);
-        }
-    });
-
-   $scope.projectPics = function() {
-        var urls = [];
-        $('#pics img').each(function(i,val) {
-          urls[i] = $(this).attr('src');
-        });
-        return urls;
-   };
-
-    $scope.getImage = function(site, i) {
-        return  $scope.projectPics()[i] ? $scope.projectPics()[i] : (site.thumbnail ? site.thumbnail : '');
-    };
 
     var doStuffWithData = function() {
         $scope.template = $scope.myData.words[0];
@@ -192,6 +107,93 @@ app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location
         });
     };
 
+    $http.get('json/eg.json')
+        .then(function(data) {
+            $scope.myData.words = data.data;
+            doStuffWithData();
+        }, function(data, status) {
+            console.log('Error: didnnt get JSON' + data + status);
+        });
+
+    $scope.projectsData = {};
+    $http.get('json/projects.json')
+        .then(function(data) {
+            $scope.projectsData.sites = data.data;
+        }, function(data, status) {
+            console.log('Error: didnnt get JSON' + data + status);
+        });
+
+    $scope.getClass = function(path) {
+        if ($location.path()) {
+            return ($location.path().substr(1, path.length) === path) ? '' : 'selected';
+        } else if (path === 'home') {
+            return 'selected';
+        }
+
+    };
+
+    $rootScope.getScrolled = function() {
+        return $rootScope.scrolled;
+    };
+
+
+    window.onscroll = function() {
+        if ($rootScope.scrolled !== 'scrolled' && document.body.scrollTop > 200) {
+            $rootScope.$apply(function() {
+                $rootScope.scrolled = 'scrolled';
+            });
+            flipBoxes(0, 12);
+        } else if ($rootScope.scrolled !== 'midscroll' && document.body.scrollTop > 20 && document.body.scrollTop < 200) {
+            $rootScope.$apply(function() {
+                $rootScope.scrolled = 'midscroll';
+            });
+            flipBoxes(0, 12);
+        } else if ($rootScope.scrolled && document.body.scrollTop < 20) {
+            $rootScope.$apply(function() {
+                $rootScope.scrolled = '';
+            });
+            flipBoxes(0, 0);
+        } 
+    };
+
+    $scope.getFlipperPos = function() {
+        if ($rootScope.scrolled) {
+            return $rootScope.scrolled;
+        } else {
+            return ($location.path() === '/home' || $location.path() === '') ? '' : 'subPage';
+        }
+    };
+    $scope.$on('$routeChangeSuccess', function(scope, next) {
+        $scope.transitionState = 'active';
+
+        if (next && next.loadedTemplateUrl !== 'pages/streamgraph.html') {
+            d3.select('svg').remove();
+            $scope.streamData = 0;
+        }
+        if (next && next.loadedTemplateUrl === 'pages/home.html') {
+            flipBoxes(0, 0);
+        } else if (next && next.loadedTemplateUrl === 'pages/contact.html') {
+            flipBoxes(0, 4);
+        } else if (next && next.loadedTemplateUrl === 'pages/about.html') {
+            flipBoxes(0, 0);
+        } else if (next && next.loadedTemplateUrl === 'pages/projects.html') {
+            flipBoxes(4, 12);
+        }
+    });
+
+    $scope.projectPics = function() {
+        var urls = [];
+        $('#pics img').each(function(i) {
+          urls[i] = $(this).attr('src');
+        });
+        return urls;
+    };
+
+    $scope.getImage = function(site, i) {
+        return  $scope.projectPics()[i] ? $scope.projectPics()[i] : (site.thumbnail ? site.thumbnail : '');
+    };
+
+
 }]);
 
 
@@ -216,28 +218,7 @@ app.controller('PieChartController', ['$rootScope', '$scope', '$http', 'PieServi
 
 
 app.controller('StreamController', ['$rootScope', '$scope', function($rootScope, $scope) {
-
-    $scope.$on('$routeChangeSuccess', function() {
-        $scope.transitionState = 'active';
-
-        $scope.streamData = 0;
-        loadGraph();
-    });
-
-    $rootScope.$on('loadStream', function() {
-        loadGraph();
-    });
-
-    $rootScope.$on('updateStream', function() {
-        if ($scope.streamData) {
-            updateGraph();
-        }
-    });
-    $scope.randomData = function() {
-        return Math.random() * 6;
-    };
-
-    var loadGraph = function() {
+   var loadGraph = function() {
         var numberOfSeries = Math.floor(Math.random() * 10) + 4;
 
         $scope.numberOfDataPoint = Math.floor(Math.random() * 51) + 5;
@@ -261,7 +242,7 @@ app.controller('StreamController', ['$rootScope', '$scope', function($rootScope,
         $scope.chart.render();
 
             
-        setTimeout(function() {updateGraph();}, .40);
+        setTimeout(function() {updateGraph();}, 0.40);
         var x = 0;
         var intervalID = setInterval(function() {
 
@@ -284,6 +265,28 @@ app.controller('StreamController', ['$rootScope', '$scope', function($rootScope,
         }
         $scope.chart.render();
     };
+
+    $scope.$on('$routeChangeSuccess', function() {
+        $scope.transitionState = 'active';
+
+        $scope.streamData = 0;
+        loadGraph();
+    });
+
+    $rootScope.$on('loadStream', function() {
+        loadGraph();
+    });
+
+    $rootScope.$on('updateStream', function() {
+        if ($scope.streamData) {
+            updateGraph();
+        }
+    });
+    $scope.randomData = function() {
+        return Math.random() * 6;
+    };
+
+ 
 }]);
 
 app.controller('TagsController', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http) {
@@ -317,15 +320,15 @@ app.controller('TagsController', ['$rootScope', '$scope', '$http', function($roo
         buildWordOBJ(word);
     };
 
-    $scope.$watch(function() {
-        return $rootScope.wordOBJ;
-    }, function(newVal, oldVal) {
+    // $scope.$watch(function() {
+    //     return $rootScope.wordOBJ;
+    // }, function(newVal, oldVal) {
 
-        if (newVal && newVal.length !== oldVal.length) {
-            // element.html(newVal);
-            // $compile(element)(scope);
-        }
-    });
+    //     if (newVal && newVal.length !== oldVal.length) {
+    //         // element.html(newVal);
+    //         // $compile(element)(scope);
+    //     }
+    // });
 
 }]);
 
@@ -334,14 +337,17 @@ app.directive('letter', ['$compile', '$http', '$templateCache', function($compil
     var getTemplate = function(letterCode) {
         var templateLoader, templateUrl = 'svg/',
             letters = 'abcdefghijklmnopqrstuvwxyz1234567890(){}=+;<>-';
+console.log(letterCode);
         letterCode = letterCode.toLowerCase();
-
         if (letters.indexOf(letterCode) > -1) {
             templateUrl += letterCode + '.svg';
         } else if (letterCode === '/'){
             templateUrl += 'slash.svg';
         } else if (letterCode === ':'){
             templateUrl += 'colon.svg';
+        } else if (letterCode === '@'){
+            console.log('break');
+            templateUrl += 'break.svg';
         } else {
             templateUrl += 'blank.svg';
         }
@@ -354,7 +360,7 @@ app.directive('letter', ['$compile', '$http', '$templateCache', function($compil
     var linker = function(scope, element) {
         var loader = getTemplate(scope.myletter.value);
 
-        var promise = loader.success(function(html) {
+        loader.success(function(html) {
             element.html(html);
         }).then(function() {
             element.replaceWith($compile(element.html())(scope));
@@ -362,7 +368,7 @@ app.directive('letter', ['$compile', '$http', '$templateCache', function($compil
     };
 
     return {
-        restrict: 'E',
+        // restrict: 'E',
         scope: {
             myletter: '='
         },

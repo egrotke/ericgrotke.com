@@ -522,6 +522,11 @@ button.btn {
         fill: rgba(0, 0, 0, .5);
         fill-opacity: .25;
     }
+    &.break{
+        display:block;
+        height:0;
+    }
+   
 }
 
 @for $i from 1 through 100 {
