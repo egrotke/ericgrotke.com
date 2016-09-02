@@ -494,7 +494,6 @@ button.btn {
 }
 
 .words svg {
-    width: 20px;
     stroke-dasharray: 380;
     stroke-dashoffset: 380;
     animation: dash 1s forwards;
@@ -503,15 +502,18 @@ button.btn {
     padding: 0px;
     path,
     polyline,
+    polygon,
     line {
         fill: none;
         stroke: black;
         stroke-width: 3;
     }
     &:hover polyline,
+    &:hover polygon,
     &:hover path,
     &:hover line {
-        stroke-width: 4;
+        stroke-width: 5;
+        stroke: black;
     }
     rect {
         display: none;
@@ -527,24 +529,83 @@ button.btn {
     &.break{
         display:block;
         height:0;
+        animation-delay:0;
     }
     &.nada{
         display:none;
         height:0;
         width:0;
+        animation-delay:0;
     } 
     &.tab{
         height:0px;
         width:40px;
+        animation-delay:0;
     }  
 }
-
-@for $i from 1 through 200 {
-    .words svg:nth-child(#{$i}) {
-        animation-delay: #{($i/16)}s;
+.words.longer svg {
+    width: 20px;
+}
+.words.long svg {
+    width: 28px;
+    path, polyline, polygon, line {
+        stroke: firebrick;
+    }
+    &:hover polyline,
+    &:hover polygon,
+    &:hover path,
+    &:hover line {
+        stroke-width: 6;
+        stroke: black;
     }
 }
-
+.words.medium svg {
+    width: 36px;
+    path, polyline, polygon, line {
+        stroke: darkcyan;
+    }
+    &:hover polyline,
+    &:hover polygon,
+    &:hover path,
+    &:hover line {
+        stroke-width: 7;
+        stroke: black;
+    }
+}
+.words.short svg {
+    width: 44px;
+    path, polyline, polygon, line {
+        stroke: purple;
+    }
+    &:hover polyline,
+    &:hover polygon,
+    &:hover path,
+    &:hover line {
+        stroke-width: 8;
+        stroke: black;
+    }
+}
+$unit: 10;
+@for $i from 1 through 600 {
+    .words.longer svg:nth-child(#{$i}) {
+        animation-delay: #{($i/($unit*4))}s;
+    }
+}
+@for $i from 1 through 300 {
+    .words.long svg:nth-child(#{$i}) {
+        animation-delay: #{($i/($unit*3))}s;
+    }
+}
+@for $i from 1 through 150 {
+    .words.medium svg:nth-child(#{$i}) {
+        animation-delay: #{($i/($unit*2))}s;
+    }
+}
+@for $i from 1 through 50 {
+    .words.short svg:nth-child(#{$i}) {
+        animation-delay: #{($i/$unit)}s;
+    }
+}
 @keyframes dash {
     to {
         stroke-dashoffset: 0;

@@ -6,6 +6,9 @@ app.controller('TagsController', ['$rootScope', '$scope', '$http', function($roo
     $http.get('json/tags.json')
         .then(function(data) {
             $scope.tagData = data.data;
+            var randIndex = Math.floor(Math.random()*$scope.tagData.length),
+            tag = $scope.tagData[randIndex];
+            buildWordOBJ((tag.description) ? tag.description : tag.name);
         }, function(data, status) {
             console.log('Error: didnnt get JSON' + data + status);
         });
@@ -16,16 +19,28 @@ app.controller('TagsController', ['$rootScope', '$scope', '$http', function($roo
     }
 
     function buildWordOBJ(str) {
+        var $words = $('.words');
         $rootScope.wordOBJ = [];
 
         $('.words svg').remove();
+
+        $words.removeClass('short medium long longer');
+        if (str.length > 200){
+            $words.addClass('longer');
+        } else if (str.length > 100){
+            $words.addClass('long');
+        }  else if (str.length > 50){
+            $words.addClass('medium');
+        }  else {
+            $words.addClass('short');
+        }
 
         str.split('').forEach(function(entry, index) {
             $rootScope.wordOBJ.push(new LetterOBJ(index, entry));
         });
     }
 
-    buildWordOBJ('var add = (function () {&br;&tb;var counter = 0;&br;&tb;return function () {&br; &tb;&tb;return counter += 1;&tb;} })(); &br;&br; add();');
+    // buildWordOBJ('var add = (function () {&br;&tb;var counter = 0;&br;&tb;return function () {&br; &tb;&tb;return counter += 1;&tb;} })(); &br;&br; add();');
 
     $scope.changeWord = function(tag) {
         buildWordOBJ((tag.description) ? tag.description : tag.name);
@@ -41,7 +56,7 @@ app.controller('TagsController', ['$rootScope', '$scope', '$http', function($roo
     //     }
     // });
 
-    
+
 
 }]);
 
@@ -50,7 +65,7 @@ app.directive('letter', ['$compile', '$http', '$templateCache', function($compil
 
     var getTemplate = function(letterCode) {
         var templateLoader, templateUrl = 'svg/',
-            letters = 'abcdefghijklmnopqrstuvwxyz1234567890(){}=+;<>-';
+            letters = "abcdefghijklmnopqrstuvwxyz1234567890(){}=+;<>-$";
         letterCode = letterCode.toLowerCase();
 
         if (specialLetter){
@@ -74,6 +89,10 @@ app.directive('letter', ['$compile', '$http', '$templateCache', function($compil
             templateUrl += 'slash.svg';
         } else if (letterCode === ':'){
             templateUrl += 'colon.svg';
+        } else if (letterCode === '.'){
+            templateUrl += 'dot.svg';
+        } else if (letterCode === "'"){
+            templateUrl += 'quote.svg';
         } else if (letterCode === '&'){
             specialLetter += letterCode;
             templateUrl += 'nada.svg';
@@ -95,6 +114,8 @@ app.directive('letter', ['$compile', '$http', '$templateCache', function($compil
             element.replaceWith($compile(element.html())(scope));
         });
     };
+
+
 
     return {
         // restrict: 'E',

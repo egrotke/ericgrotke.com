@@ -1,19 +1,18 @@
 [
 	{"name" :"JavaScript", "description": "var add = (function () {&br;&tb;var counter = 0;&br;&tb;return function () {&br;&tb;&tb;return counter += 1;&tb;} })();&br;&br;add();"}, 
-	{"name" :"CSS3", "description": "div {&br;&tb;transform: rotateZ(90deg);&br;}"}, 
+	{"name" :"CSS3", "description": ".words svg {&br;&tb;stroke-dasharray: 380;&br;&tb;stroke-dashoffset: 380;&br;&tb;animation: dash 1s forwards;&br;&tb;animation-timing-function: cubic-bezier(0.195, 0.010, 0.940, 1.030);&br;}"}, 
 	{"name" :"HTML5", "description": "<nav></nav>&br;&tb;<main>&br;&tb;&tb;<section>&br;&tb;&tb;&tb;<article>&br;&tb;&tb;&tb;&tb;<h4>Hello World!</h4>&br;&tb;&tb;&tb;</article>&br;&tb;&tb;</section>&br;&tb;&tb;<aside></aside>&br;</main>"}, 
 	{"name" :"Angularjs", "description": "<div ng-app='myApp' ng-controller='myCtrl'></div>"}, 
 	{"name" :"React", "description": "var Box = React.createClass(&br;{render: function() {&br;return (<div>Hello, world!</div>);});"}, 
-	{"name" :"Backbone", "description": ""}, 
-	{"name" :"Bootstrap", "description": ""}, 
-	{"name" :"Grunt", "description": ""}, 
-	{"name" :"Flux", "description": ""}, 
-	{"name" :"Redux", "description": ""}, 
-	{"name" :"jQuery", "description": ""}, 
-	{"name" :"D3", "description": ""}, 
-	{"name" :"MySQL", "description": ""}, 
-	{"name" :"PHP", "description": ""}, 
-	{"name" :"SASS", "description": ""}, 
-	{"name" :"Yeoman", "description": ""}, 
-	{"name" :"GIT", "description": ""}
+	{"name" :"Backbone", "description": "var app = Backbone.Model.extend({&br;&tb;initialize: function(){&br;&tb;&tb;console('Hello hello');&br;&tb;},&br;&tb;&tb;defaults: {&br;&tb;&tb;&tb;name: 'This app'&br;&tb;}&br;});&br;"}, 
+	{"name" :"Bootstrap", "description": "<div class='container'>&br;&tb;<div class='row'>&br;&tb;&tb;<div class='col-sm-4'>&br;&tb;&tb;&tb;<h3>Column 1</h3>&br;&tb;&tb;&tb;<p>Lorem ipsum dolor sit amet</p>&br;&tb;&tb;</div>&br;&tb;&tb;<div class='col-sm-4'>&br;&tb;&tb;&tb;<h3>Column 2</h3>&br;&tb;&tb;&tb;<p>Ut enim ad minim veniam</p>&br;&tb;&tb;</div>&br;&tb;&tb;<div class='col-sm-4'>&br;&tb;&tb;&tb;<h3>Column 3</h3>&br;&tb;&tb;</div>&br;&tb;</div>&br;</div>"}, 
+	{"name" :"Grunt", "description": "module.exports = function(grunt) {&br; &tb;grunt.initConfig({&br; &tb;&tb;jshint: {&br;&tb;&tb;&tb;files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],&br;&tb;&tb;&tb;options: {&br;&tb;&tb;&tb;&tb;globals: {&br;&tb;&tb;&tb;&tb;&tb;jQuery: true&br;&tb;&tb;&tb;&tb;}&br;&tb;&tb;&tb;}&br;&tb;&tb;},&br;&tb;&tb;watch: {&tb;&tb;&tb;files: ['<%= jshint.files %>'],&br;&tb;&tb;&tb;tasks: ['jshint']&br;&tb;&tb;}&br;&tb;});&br;&tb;grunt.loadNpmTasks('grunt-contrib-jshint');&br;&tb;grunt.loadNpmTasks('grunt-contrib-watch');&br;&tb;grunt.registerTask('default', ['jshint']);&br;};"}, 
+	{"name" :"Redux", "description": "function todoApp(state = initialState, action) {&br;&tb;switch (action.type) {&br;&tb;&tb;case SET_VISIBILITY_FILTER:&br;&tb;&tb;&tb;return Object.assign({}, state, {&br;&tb;&tb;&tb;&tb;visibilityFilter: action.filter&br;&tb;&tb;&tb;})&br;&tb;&tb;default:&br;&tb;&tb;&tb;return state&br;&tb;}&br;}"}, 
+	{"name" :"jQuery", "description": "$(document).ready(function(){&br;&tb;$('p').click(function(){&br;&tb;&tb;$(this).hide();&br;&tb;});&br;});"}, 
+	{"name" :"MySQL", "description": "SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate&br;FROM Orders&br;INNER JOIN Customers&br;ON Orders.CustomerID=Customers.CustomerID;"}, 
+	{"name" :"PHP", "description": "<?php&br;$_SESSION['favcolor'] = 'green';&br;$_SESSION['favanimal'] = 'cat';&br;echo 'Session variables are set.';&br;?>"}, 
+	{"name" :"SASS", "description": "@for $i from 1 through 150 {&br;&tb;.words.medium svg:nth-child(#{$i}) {&br;&tb;&tb;animation-delay: #{($i/($unit*2))}s;&br;&tb;}&br;}"}, 
+	{"name" :"GIT", "description": "git push live master"}
 ]
+
+
