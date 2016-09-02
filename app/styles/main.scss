@@ -492,8 +492,14 @@ button.btn {
     margin: 2px;
     font-size: 24px;
 }
+    
+.words .well{
+        background-color: rgba(255,255,255,0.2);
+        border:none;
+    }
 
 .words svg {
+
     stroke-dasharray: 380;
     stroke-dashoffset: 380;
     animation: dash 1s forwards;
@@ -516,10 +522,11 @@ button.btn {
         stroke: black;
     }
     rect {
-        display: none;
+        /*display: none;*/
+        fill: rgba(255,255,255,0.8);
         stroke-width: 1;
         animation: all 1s ease;
-        fill-opacity: 0;
+        fill-opacity: .8;
     }
     &:hover rect {
         display: block;
@@ -537,7 +544,7 @@ button.btn {
         width:0;
         animation-delay:0;
     } 
-    &.tab{
+    &.tab, &.blank{
         height:0px;
         width:40px;
         animation-delay:0;
