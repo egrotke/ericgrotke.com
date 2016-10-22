@@ -62,6 +62,7 @@ app.config(['$routeProvider', function($routeProvider) {
 
 app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location', function($rootScope, $scope, $http, $location) {
     $scope.myData = {};
+    $scope.timeouts = [];
 
     var doStuffWithData = function() {
         $scope.template = $scope.myData.words[0];
@@ -94,19 +95,19 @@ app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location
     };
 
     var flipBoxes = function(start, finish) {
-        var timeouts = [];
         angular.forEach(angular.element('.flip-container'), function(value, key) {
             var a = angular.element(value);
             if (a.hasClass('hover')) {
                 a.removeClass('hover');
             }
-            clearTimeout(timeouts[key]);
+            clearTimeout($scope.timeouts[key]);
             if (key >= start && key < finish) {
-                timeouts[key] = setTimeout(function() {
+                $scope.timeouts[key] = setTimeout(function() {
                     a.addClass('hover');
                 }, 150 * (key - start) + 200);
             }
         });
+
     };
 
     $http.get('json/eg.json')
