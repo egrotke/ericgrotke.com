@@ -94,15 +94,17 @@ app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location
     };
 
     var flipBoxes = function(start, finish) {
+        var timeouts = [];
         angular.forEach(angular.element('.flip-container'), function(value, key) {
             var a = angular.element(value);
             if (a.hasClass('hover')) {
                 a.removeClass('hover');
             }
+            clearTimeout(timeouts[key]);
             if (key >= start && key < finish) {
-                setTimeout(function() {
+                timeouts[key] = setTimeout(function() {
                     a.addClass('hover');
-                }, 150 * (key - start));
+                }, 150 * (key - start) + 200);
             }
         });
     };
@@ -142,12 +144,12 @@ app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location
             $rootScope.$apply(function() {
                 $rootScope.scrolled = 'scrolled';
             });
-            flipBoxes(0, 12);
+            (window.innerWidth < 768) ? flipBoxes(0, 0) : flipBoxes(0, 12);
         } else if ($rootScope.scrolled !== 'midscroll' && document.body.scrollTop > 20 && document.body.scrollTop < 200) {
             $rootScope.$apply(function() {
                 $rootScope.scrolled = 'midscroll';
             });
-            flipBoxes(0, 12);
+            (window.innerWidth < 768) ? flipBoxes(0, 0) : flipBoxes(0, 12);
         } else if ($rootScope.scrolled && document.body.scrollTop < 20) {
             $rootScope.$apply(function() {
                 $rootScope.scrolled = '';
@@ -198,20 +200,20 @@ app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location
 
 
 
-app.controller('PieChartController', ['$rootScope', '$scope', '$http', 'PieService', function($rootScope, $scope, $http, PieService) {
+app.controller('PieChartController', ['$rootScope', '$scope', '$http', 'Pie', function($rootScope, $scope, $http, Pie) {
     var loaded = false;
 
     setTimeout(function() {
-        loaded = PieService.newChart(Math.random() * 9 + 1);
+        loaded = Pie.newChart(Math.random() * 9 + 1);
     }, 1);
 
     $rootScope.$on('loadPie', function() {
-        loaded = PieService.newChart(Math.random() * 9 + 1);
+        loaded = Pie.newChart(Math.random() * 9 + 1);
     });
 
     $rootScope.$on('updatePie', function() {
         if (loaded) {
-            PieService.update();
+            Pie.update();
         }
     });
 }]);

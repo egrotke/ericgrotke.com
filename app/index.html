@@ -29,7 +29,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
       <![endif]-->
     <main class="container" ng-app="egApp" ng-class="getScrolled()" ng-strict-di>
-        <header >
+        <header>
             <div id="flippers" ng-controller='LettersController' ng-class="getFlipperPos()" ng-cloak>
                 <div ng-repeat="word in myData.words" class="repeater word-{{ $index }}">
                     <div ng-repeat="block in word.blocks" class="flip-container block-{{ $index }} " ontouchstart="this.classList.toggle('hover');">
@@ -66,7 +66,7 @@
         </header>
         <!-- angular templating -->
         <!-- this is where content will be injected -->
-        <div ng-view id="template-container" ></div>
+        <div ng-view id="template-container"></div>
     </main>
     <footer class="container">
         <div class="row">

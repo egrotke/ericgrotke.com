@@ -90,7 +90,7 @@ nav {
     margin-top: 20px;
     /*min-height: 70px;*/
     position: fixed;
-    right:30px;
+    right: 30px;
     /* Make the masthead heading the same height as the navigation */
     h3 {
         margin-top: 0;
@@ -110,6 +110,7 @@ nav {
         @include transition-timing-function(ease);
     }
 }
+
 nav.midscroll {
     position: fixed;
     margin-top: 5px;
@@ -121,28 +122,7 @@ nav.midscroll {
         padding: 10px 10px;
     }
 }
-@media all and (min-width: 700px) {
 
-    nav.scrolled {
-        position: fixed;
-        margin-top: 5px;
-        right: 0;
-        li {
-            transform: rotate(45deg);
-            display: block;
-            float: none;
-            width: 70px;
-            text-align: center;
-            margin-top: 18px;
-        }
-        .nav > li > a {
-            padding: 0 10px;
-        }
-    }
-    main.container.scrolled {
-        margin-left: 65px;
-    }
-}
 .nav {
     z-index: 400;
     li {
@@ -314,6 +294,7 @@ nav .nav.nav-pills > .active > a {
         @include soft-shadow();
     }
 }
+
 #matrix {
     transform: translateX(100%);
     &.reveal {
@@ -327,39 +308,149 @@ nav .nav.nav-pills > .active > a {
     margin: 200px auto 30px auto;
 }
 
-@media all and (max-width: 700px) {
-    nav, nav.midscroll, nav.scrolled{
+@media all and (max-width: 768px) {
+    nav,
+    nav.midscroll,
+    nav.scrolled {
         transform: rotate(-90deg);
-        position:fixed;
-        top:120px;
-        right:-97px;
-        padding:0;
-        margin:0;
-        left:auto;
+        position: fixed;
+        top: 210px;
+        right: -97px;
+        padding: 0;
+        margin: 0;
+        left: auto;
         /*width:100%;*/
-        .nav > li{
-            margin:0px 5px 0 0;
+        .nav > li {
+            margin: 0px 5px 0 0;
         }
-        .nav > li:first-child{
+        .nav > li:first-child {
             display: none;
         }
         .nav > li > a {
             padding: 5px 10px;
-            text-align:center;
+            text-align: center;
         }
     }
-    .nav li{float:left;}
+    .nav li {
+        float: left;
+    }
     #template-container {
-        margin: 50px 55px 30px 15px;
+        margin: 90px 55px 30px 15px;
     }
-
-    #flippers, #flippers.midscroll, #flippers.scrolled{
-        display:none;
+    #flippers,
+    #flippers.subPage,
+    #flippers.midscroll,
+    #flippers.scrolled {
+        margin: 0;
+        width: 100%;
+        height:64px;
+        .word-0 {
+            margin-top: 5px;
+            margin-left: 5px;
+        }
+        .word-1 {
+            margin-top: 5px;
+            margin-left: 260px;
+        }
     }
+/*    #flippers.scrolled {
+        background:rgba(1,1,1,.5);
+    }*/
+}
 
+@media all and (max-width: 640px) {
+    .flip-container,
+    .front,
+    .back {
+        width: 35px;
+        height: 35px;
+    }
+    #flippers,
+    #flippers.scrolled,
+    #flippers.subPage,
+    #flippers.midscroll,
+    #flippers.scrolled {
+        height:38px;
+        h1{
+            font-size:24px;
+            line-height: 35px;
+        }
+        .word-1 {
+            margin-top: 5px;
+            margin-left: 150px;
+        }
+    }
 }
 
 
+/*@media all and (min-width: 768px) and (max-width: 1024px) {
+    nav {
+        position: fixed;
+        margin-top: 5px;
+        right: 0;
+        li {
+            transform: rotate(45deg);
+            display: block;
+            float: none;
+            width: 70px;
+            text-align: center;
+            margin-top: 18px;
+        }
+        .nav > li > a {
+            padding: 0 10px;
+        }
+    }
+}*/
+
+@media all and (min-width: 768px) {
+    nav.scrolled {
+        position: fixed;
+        margin-top: 5px;
+        right: 0;
+        li {
+            transform: rotate(45deg);
+            display: block;
+            float: none;
+            width: 70px;
+            text-align: center;
+            margin-top: 18px;
+        }
+        .nav > li > a {
+            padding: 0 10px;
+        }
+    }
+    main.container.scrolled {
+        margin-left: 65px;
+    }
+    /* Remove the padding we set earlier */
+    .header,
+    .footer {
+        padding: 0;
+    }
+    /* Space out the masthead */
+    .header {
+        margin-bottom: 30px;
+    }
+    .nav {
+        width: auto;
+        right: auto;
+        position: relative;
+        li {
+            float: left;
+            margin-bottom: 3px;
+        }
+    }
+    #flippers {
+        margin: 150px 0 50px 10px;
+        text-align: center;
+    }
+    .flipper h1 {
+        line-height: $blockSize;
+    }
+    .projects .panel {
+        min-height: 400px;
+    }
+}
 
 
 /* Custom page footer */
@@ -449,61 +540,25 @@ button.btn {
     background-color: rgba(240, 240, 240, .8); //#e9ebee;
 }
 
-@media all and (min-width: 768px) {
-    .container {
-        /*max-width: 730px;*/
-    }
-    /* Remove the padding we set earlier */
-    .header,
-    .footer {
-        padding: 0;
-    }
-    /* Space out the masthead */
-    .header {
-        margin-bottom: 30px;
-    }
-    /*    nav{
-        width:85%;
-    }*/
-    .nav {
-        width: auto;
-        right: auto;
-        position: relative;
-        li {
-            float: left;
-            margin-bottom: 3px;
-        }
-    }
-    #flippers {
-        margin: 150px 0 50px 10px;
-        text-align: center;
-    }
-    .flipper h1 {
-        line-height: $blockSize;
-    }
-    .projects .panel {
-        min-height: 400px;
-    }
-}
-#pics{
+#pics {
     display: none;
 }
+
 #tags .btn {
     margin: 2px;
     font-size: 24px;
 }
-    
-.words .well{
-        background-color: rgba(255,255,255,0.2);
-        border:none;
-    }
+
+.words .well {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+}
 
 .words svg {
-
     stroke-dasharray: 380;
     stroke-dashoffset: 380;
     animation: dash 1s forwards;
-    animation-timing-function: cubic-bezier(0.195, 0.010, 0.940, 1.030);
+    animation-timing-function: ease;
     cursor: pointer;
     padding: 0px;
     path,
@@ -523,7 +578,7 @@ button.btn {
     }
     rect {
         /*display: none;*/
-        fill: rgba(255,255,255,0.8);
+        fill: rgba(255, 255, 255, 0.8);
         stroke-width: 1;
         animation: all 1s ease;
         fill-opacity: .8;
@@ -533,29 +588,35 @@ button.btn {
         fill: rgba(0, 0, 0, .5);
         fill-opacity: .25;
     }
-    &.break{
-        display:block;
-        height:0;
-        animation-delay:0;
+    &.break {
+        display: block;
+        height: 0;
+        animation-delay: 0;
     }
-    &.nada{
-        display:none;
-        height:0;
-        width:0;
-        animation-delay:0;
-    } 
-    &.tab, &.blank{
-        height:0px;
-        width:40px;
-        animation-delay:0;
-    }  
+    &.nada {
+        display: none;
+        height: 0;
+        width: 0;
+        animation-delay: 0;
+    }
+    &.tab,
+    &.blank {
+        height: 0px;
+        width: 40px;
+        animation-delay: 0;
+    }
 }
+
 .words.longer svg {
     width: 20px;
 }
+
 .words.long svg {
     width: 28px;
-    path, polyline, polygon, line {
+    path,
+    polyline,
+    polygon,
+    line {
         stroke: firebrick;
     }
     &:hover polyline,
@@ -566,9 +627,13 @@ button.btn {
         stroke: black;
     }
 }
+
 .words.medium svg {
     width: 36px;
-    path, polyline, polygon, line {
+    path,
+    polyline,
+    polygon,
+    line {
         stroke: darkcyan;
     }
     &:hover polyline,
@@ -579,9 +644,13 @@ button.btn {
         stroke: black;
     }
 }
+
 .words.short svg {
     width: 44px;
-    path, polyline, polygon, line {
+    path,
+    polyline,
+    polygon,
+    line {
         stroke: purple;
     }
     &:hover polyline,
@@ -592,27 +661,32 @@ button.btn {
         stroke: black;
     }
 }
+
 $unit: 10;
 @for $i from 1 through 600 {
     .words.longer svg:nth-child(#{$i}) {
         animation-delay: #{($i/($unit*4))}s;
     }
 }
+
 @for $i from 1 through 300 {
     .words.long svg:nth-child(#{$i}) {
         animation-delay: #{($i/($unit*3))}s;
     }
 }
+
 @for $i from 1 through 150 {
     .words.medium svg:nth-child(#{$i}) {
         animation-delay: #{($i/($unit*2))}s;
     }
 }
+
 @for $i from 1 through 50 {
     .words.short svg:nth-child(#{$i}) {
         animation-delay: #{($i/$unit)}s;
     }
 }
+
 @keyframes dash {
     to {
         stroke-dashoffset: 0;

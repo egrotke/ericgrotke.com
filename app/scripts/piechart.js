@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('PieService', function() {
+app.factory('Pie', function() {
 
     function pieChart() {
         var _chart = {};

@@ -6,8 +6,8 @@ app.controller('TagsController', ['$rootScope', '$scope', '$http', function($roo
     $http.get('json/tags.json')
         .then(function(data) {
             $scope.tagData = data.data;
-            var randIndex = Math.floor(Math.random()*$scope.tagData.length),
-            tag = $scope.tagData[randIndex];
+            var randIndex = Math.floor(Math.random() * $scope.tagData.length),
+                tag = $scope.tagData[randIndex];
             buildWordOBJ((tag.description) ? tag.description : tag.name);
         }, function(data, status) {
             console.log('Error: didnnt get JSON' + data + status);
@@ -25,13 +25,13 @@ app.controller('TagsController', ['$rootScope', '$scope', '$http', function($roo
         $('.words svg').remove();
 
         $words.removeClass('short medium long longer');
-        if (str.length > 200){
+        if (str.length > 200) {
             $words.addClass('longer');
-        } else if (str.length > 100){
+        } else if (str.length > 100) {
             $words.addClass('long');
-        }  else if (str.length > 50){
+        } else if (str.length > 50) {
             $words.addClass('medium');
-        }  else {
+        } else {
             $words.addClass('short');
         }
 
@@ -65,35 +65,35 @@ app.directive('letter', ['$compile', '$http', '$templateCache', function($compil
 
     var getTemplate = function(letterCode) {
         var templateLoader, templateUrl = 'svg/',
-            letters = "abcdefghijklmnopqrstuvwxyz1234567890(){}=+;<>-$";
+            letters = "abcdefghijklmnopqrstuvwxyz1234567890(){}=+;<>-$*";
         letterCode = letterCode.toLowerCase();
 
-        if (specialLetter){
+        if (specialLetter) {
             specialLetter += letterCode;
-            if (letterCode === ';'){
+            if (letterCode === ';') {
 
-                if (specialLetter === '&br;'){
+                if (specialLetter === '&br;') {
                     templateUrl += 'break.svg';
-                } else if (specialLetter === '&tb;'){
+                } else if (specialLetter === '&tb;') {
                     templateUrl += 'tab.svg';
-                } else {//default
+                } else { //default
                     templateUrl += 'break.svg';
                 }
                 specialLetter = '';
-            } else{
+            } else {
                 templateUrl += 'nada.svg';
             }
         } else if (letters.indexOf(letterCode) > -1) {
             templateUrl += letterCode + '.svg';
-        } else if (letterCode === '/'){
+        } else if (letterCode === '/') {
             templateUrl += 'slash.svg';
-        } else if (letterCode === ':'){
+        } else if (letterCode === ':') {
             templateUrl += 'colon.svg';
-        } else if (letterCode === '.'){
+        } else if (letterCode === '.') {
             templateUrl += 'dot.svg';
-        } else if (letterCode === "'"){
+        } else if (letterCode === "'") {
             templateUrl += 'quote.svg';
-        } else if (letterCode === '&'){
+        } else if (letterCode === '&') {
             specialLetter += letterCode;
             templateUrl += 'nada.svg';
         } else {
@@ -114,7 +114,6 @@ app.directive('letter', ['$compile', '$http', '$templateCache', function($compil
             element.replaceWith($compile(element.html())(scope));
         });
     };
-
 
 
     return {
