@@ -3,61 +3,44 @@
 /*jshint loopfunc: true*/
 var app = angular.module('egApp', ['ngRoute']);
 
-// configure our routes
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
-
-    // route for the home page
-        .when('/home', {
+    .when('/home', {
         templateUrl: 'pages/home.html',
         reloadOnSearch: false
     })
-
-    // route for the about page
     .when('/about', {
         templateUrl: 'pages/about.html',
         reloadOnSearch: false
     })
-
-    // route for the contact page
     .when('/contact', {
         templateUrl: 'pages/contact.html',
         // controller: 'LettersController',
         reloadOnSearch: false
     })
-
-    // route for the streamgraph page
     .when('/streamgraph', {
             templateUrl: 'pages/streamgraph.html',
             controller: 'StreamController',
             reloadOnSearch: false
-        })
-        // route for the piechart page
-        .when('/piechart', {
+    })
+    .when('/piechart', {
             templateUrl: 'pages/piechart.html',
             controller: 'PieChartController',
             reloadOnSearch: false
-        })
-
-    // route for the projects page
+    })
     .when('/projects', {
         templateUrl: 'pages/projects.html',
         reloadOnSearch: false
     })
-
-    // route for the tags page
     .when('/tags', {
         templateUrl: 'pages/tags.html',
         controller: 'TagsController',
         reloadOnSearch: false
     })
-
-    // route for the stylesheet page
     .when('/stylesheet', {
         templateUrl: 'pages/stylesheet.html',
         reloadOnSearch: false
     });
-
 }]);
 
 app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location', function($rootScope, $scope, $http, $location) {
@@ -132,7 +115,6 @@ app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location
         } else if (path === 'home') {
             return 'selected';
         }
-
     };
 
     $rootScope.getScrolled = function() {
@@ -141,22 +123,25 @@ app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location
 
 
     window.onscroll = function() {
+        var endFlip = 12;
         if ($rootScope.scrolled !== 'scrolled' && document.body.scrollTop > 200) {
             $rootScope.$apply(function() {
                 $rootScope.scrolled = 'scrolled';
             });
-            (window.innerWidth < 768) ? flipBoxes(0, 0) : flipBoxes(0, 12);
+            if (window.innerWidth < 768)  {endFlip = 0;}
         } else if ($rootScope.scrolled !== 'midscroll' && document.body.scrollTop > 20 && document.body.scrollTop < 200) {
             $rootScope.$apply(function() {
                 $rootScope.scrolled = 'midscroll';
             });
-            (window.innerWidth < 768) ? flipBoxes(0, 0) : flipBoxes(0, 12);
+            if (window.innerWidth < 768)  {endFlip = 0;}
         } else if ($rootScope.scrolled && document.body.scrollTop < 20) {
             $rootScope.$apply(function() {
                 $rootScope.scrolled = '';
             });
-            flipBoxes(0, 0);
-        } 
+            endFlip = 0;
+        }
+        flipBoxes(0, endFlip);
+
     };
 
     $scope.getFlipperPos = function() {
@@ -187,24 +172,23 @@ app.controller('LettersController', ['$rootScope', '$scope', '$http', '$location
     $scope.projectPics = function() {
         var urls = [];
         $('#pics img').each(function(i) {
-          urls[i] = $(this).attr('src');
+            urls[i] = $(this).attr('src');
         });
         return urls;
     };
 
     $scope.getImage = function(site, i) {
-        return  $scope.projectPics()[i] ? $scope.projectPics()[i] : (site.thumbnail ? site.thumbnail : '');
+        return $scope.projectPics()[i] ? $scope.projectPics()[i] : (site.thumbnail ? site.thumbnail : '');
     };
-
 
 }]);
 
 
 
-app.controller('PieChartController', ['$rootScope', '$scope', '$http', 'Pie', function($rootScope, $scope, $http, Pie) {
+app.controller('PieChartController', ['$rootScope', '$scope', '$http', '$timeout', 'Pie', function($rootScope, $scope, $http, $timeout, Pie) {
     var loaded = false;
 
-    setTimeout(function() {
+    $timeout(function() {
         loaded = Pie.newChart(Math.random() * 9 + 1);
     }, 1);
 
@@ -221,7 +205,7 @@ app.controller('PieChartController', ['$rootScope', '$scope', '$http', 'Pie', fu
 
 
 app.controller('StreamController', ['$rootScope', '$scope', function($rootScope, $scope) {
-   var loadGraph = function() {
+    var loadGraph = function() {
         var numberOfSeries = Math.floor(Math.random() * 10) + 4;
 
         $scope.numberOfDataPoint = Math.floor(Math.random() * 51) + 5;
@@ -244,8 +228,8 @@ app.controller('StreamController', ['$rootScope', '$scope', function($rootScope,
         });
         $scope.chart.render();
 
-            
-        setTimeout(function() {updateGraph();}, 0.40);
+
+        setTimeout(function() { updateGraph(); }, 0.40);
         var x = 0;
         var intervalID = setInterval(function() {
 
@@ -289,6 +273,5 @@ app.controller('StreamController', ['$rootScope', '$scope', function($rootScope,
         return Math.random() * 6;
     };
 
- 
-}]);
 
+}]);
