@@ -15,7 +15,6 @@ app.config(['$routeProvider', function($routeProvider) {
     })
     .when('/contact', {
         templateUrl: 'pages/contact.html',
-        // controller: 'LettersController',
         reloadOnSearch: false
     })
     .when('/streamgraph', {
