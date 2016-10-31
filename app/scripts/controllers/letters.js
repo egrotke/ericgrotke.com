@@ -1,17 +1,17 @@
 'use strict';
 
-app.controller('LettersController', ['$rootScope', '$scope', '$location', 'SiteData', function($rootScope, $scope, $location, SiteData) {
+app.controller('LettersController', ['$rootScope', '$scope', '$location', '$timeout', 'SiteData', function($rootScope, $scope, $location, $timeout, SiteData) {
     $scope.timeouts = [];
     $scope.myData = {};
     SiteData.letters()
         .then(function(data) {
             $scope.myData.words = data.data;
-            $scope.doStuffWithData();
+            $scope.addLetterEvents();
         }, function(data, status) {
             console.log('Error: didnnt get JSON' + data + status);
         });
 
-    $scope.doStuffWithData = function() {
+    $scope.addLetterEvents = function() {
         $scope.template = $scope.myData.words[0];
         $scope.myData.words.doClick = function(index, item) {
             $scope.action = item.action;
@@ -45,9 +45,9 @@ app.controller('LettersController', ['$rootScope', '$scope', '$location', 'SiteD
             if (a.hasClass('hover')) {
                 a.removeClass('hover');
             }
-            clearTimeout($scope.timeouts[key]);
+            $timeout.cancel($scope.timeouts[key]);
             if (key >= start && key < finish) {
-                $scope.timeouts[key] = setTimeout(function() {
+                $scope.timeouts[key] = $timeout(function() {
                     a.addClass('hover');
                 }, 150 * (key - start) + 200);
             }
