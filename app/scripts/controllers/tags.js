@@ -6,7 +6,7 @@ app.controller('TagsController', ['$rootScope', '$scope', 'SiteData', function($
         .then(function(data) {
             $scope.tagData = data.data;
             var randIndex = Math.floor(Math.random() * $scope.tagData.length),
-                tag = $scope.tagData[randIndex];
+                tag = $scope.tagData[0];
             buildWordOBJ((tag.description) ? tag.description : tag.name);
         }, function(data, status) {
             console.log('Error: didnnt get JSON' + data + status);
