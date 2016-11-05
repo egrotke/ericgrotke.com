@@ -15,4 +15,5 @@ app.controller('PieChartController', ['$rootScope', '$scope', '$http', '$timeout
             Pie.update();
         }
     });
+
 }]);

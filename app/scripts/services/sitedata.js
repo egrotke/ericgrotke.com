@@ -1,5 +1,5 @@
 'use strict';
-app.factory("SiteData", ['$http', function SiteDataFactory($http) {
+app.factory('SiteData', ['$http', function SiteDataFactory($http) {
     return {
         letters: function() {
             return $http.get('json/eg.json');

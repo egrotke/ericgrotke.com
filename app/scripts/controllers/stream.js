@@ -68,4 +68,6 @@ app.controller('StreamController', ['$rootScope', '$scope', '$timeout',  functio
     $scope.randomData = function() {
         return Math.random() * 6;
     };
+
+
 }]);
