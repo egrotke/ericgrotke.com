@@ -14,12 +14,12 @@ Running `grunt test` will run the unit tests with karma.
 
 This site was built with the following:
 
-HTML5
-CSS3
-Angularjs
-Bootstrap
-Font Awesome
-Git
-Grunt
-Yeoman
-Bower
+* HTML5
+* CSS3
+* Angularjs
+* Bootstrap
+* Font Awesome
+* Git
+* Grunt
+* Yeoman
+* Bower
